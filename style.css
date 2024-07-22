@@ -1,0 +1,251 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --padding-player: .5%;
+    --border-size: 1px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(87, 160, 197);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 100vh;
+    height: 100vh;
+    background-color: rgb(254, 240, 240);
+    /* display: flex; */
+    position: relative;
+}
+
+.player {
+    width: 35%;
+    height: 35%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green {
+    background-color: green;
+    position: absolute;
+    top: var(--padding-player);
+    left: var(--padding-player);
+}
+
+.yellow {
+    background-color: yellow;
+    position: absolute;
+    top: var(--padding-player);
+    right: var(--padding-player);
+}
+
+.blue {
+    background-color: blue;
+    position: absolute;
+    bottom: var(--padding-player);
+    right: var(--padding-player);
+}
+
+.red {
+    background-color: red;
+    position: absolute;
+    position: absolute;
+    bottom: var(--padding-player);
+    left: var(--padding-player);
+    border: var(--border-size) solid black;
+}
+
+.field {
+    width: 29%;
+    height: 35%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    padding-top: .5%;
+}
+
+.shells {
+    border: var(--border-size) solid black;
+}
+
+.yellow-field {
+    position: absolute;
+    top: 0px;
+    left: 35.5%;
+}
+
+
+.blue-field {
+    width: 35%;
+    height: 29%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    position: absolute;
+    top: 35%;
+    left: 64.5%;
+    right: 0px;
+}
+
+.red-field {
+    width: 29%;
+    height: 35%;
+    position: absolute;
+    bottom: 0px;
+    left: 35.5%;
+    padding-top: 0px;
+    padding-bottom: .5%;
+}
+
+.green-field {
+    width: 35%;
+    height: 29%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding-left: .5%;
+    padding-right: 0px;
+    position: absolute;
+    top: 35%;
+    left: 0px;
+}
+
+.home {
+    width: 29%;
+    height: 29%;
+    background-color: blue;
+    position: absolute;
+    top: 35.5%;
+    left: 35.5%;
+}
+
+.y-shell6,
+.y-shell5,
+.y-shell8,
+.y-shell11,
+.y-shell14,
+.y-shell17 {
+    background-color: yellow;
+}
+
+.r-shell6,
+.r-shell5,
+.r-shell8,
+.r-shell11,
+.r-shell14,
+.r-shell17 {
+    background-color: red;
+}
+
+
+.g-shell6,
+.g-shell5,
+.g-shell8,
+.g-shell11,
+.g-shell14,
+.g-shell17 {
+    background-color: green;
+}
+
+.b-shell6,
+.b-shell5,
+.b-shell8,
+.b-shell11,
+.b-shell14,
+.b-shell17 {
+    background-color: blue;
+}
+
+.player-innerbox {
+    width: 70%;
+    height: 70%;
+    background-color: white;
+    border: var(--border-size) solid black;
+    position: relative;
+}
+
+.player-innercircle-g,
+.player-innercircle-b,
+.player-innercircle-r,
+.player-innercircle-y {
+    width: 26.66%;
+    height: 26.66%;
+    background-color: green;
+    border: var(--border-size) solid black;
+    border-radius: 50%;
+}
+
+.player-innercircle-b {
+    background-color: blue;
+}
+
+.player-innercircle-r {
+    background-color: red;
+}
+.player-innercircle-y {
+    background-color: yellow;
+}
+
+
+.circle1 {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border: var(--border-size) solid black;
+}
+
+.circle2 {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    border: var(--border-size) solid black;
+}
+
+.circle3 {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    border: var(--border-size) solid black;
+}
+
+.circle4 {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    border: var(--border-size) solid black;
+}
+
+.part {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* border: var(--border-size) solid black; */
+}
+
+.part1 {
+    clip-path: polygon(0 0, 50% 50%, 0 100%);
+    background-color: green;
+
+}
+
+.part2 {
+    clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+    background-color: blue;
+}
+
+.part3 {
+    clip-path: polygon(0 0, 100% 0, 50% 50%);
+    background-color: yellow;
+}
+
+.part4 {
+    clip-path: polygon(0 100%, 100% 100%, 50% 50%);
+    background-color: red;
+}
