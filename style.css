@@ -6,6 +6,7 @@
 :root {
     --padding-player: .5%;
     --border-size: 1px;
+    --circle-width: 100%;
 }
 
 body {
@@ -18,11 +19,21 @@ body {
 }
 
 main {
-    width: 100vh;
-    height: 100vh;
     background-color: rgb(254, 240, 240);
     /* display: flex; */
     position: relative;
+}
+
+.main-for-desktop {
+    height: 100vh;
+    aspect-ratio: 1 / 1;
+
+}
+
+.main-for-phone {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
 }
 
 .player {
@@ -75,6 +86,33 @@ main {
 
 .shells {
     border: var(--border-size) solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stamp {
+    font-size: 200%;
+}
+
+.green-arrow {
+    font-size: 170%;
+    color: green;
+}
+
+.red-arrow {
+    font-size: 170%;
+    color: red;
+}
+
+.yellow-arrow {
+    font-size: 170%;
+    color: rgb(227, 227, 5);
+}
+
+.blue-arrow {
+    font-size: 170%;
+    color: blue;
 }
 
 .yellow-field {
@@ -189,6 +227,7 @@ main {
 .player-innercircle-r {
     background-color: red;
 }
+
 .player-innercircle-y {
     background-color: yellow;
 }
@@ -199,6 +238,8 @@ main {
     top: 10%;
     left: 10%;
     border: var(--border-size) solid black;
+    display: flex;
+    justify-content: center;
 }
 
 .circle2 {
@@ -206,6 +247,8 @@ main {
     top: 10%;
     right: 10%;
     border: var(--border-size) solid black;
+    display: flex;
+    justify-content: center;
 }
 
 .circle3 {
@@ -213,6 +256,8 @@ main {
     bottom: 10%;
     left: 10%;
     border: var(--border-size) solid black;
+    display: flex;
+    justify-content: center;
 }
 
 .circle4 {
@@ -220,6 +265,8 @@ main {
     bottom: 10%;
     right: 10%;
     border: var(--border-size) solid black;
+    display: flex;
+    justify-content: center;
 }
 
 .part {
@@ -248,4 +295,252 @@ main {
 .part4 {
     clip-path: polygon(0 100%, 100% 100%, 50% 50%);
     background-color: red;
+}
+
+.pawn-g,
+.pawn-y,
+.pawn-b,
+.pawn-r {
+    position: absolute;
+    font-size: 300%;
+    bottom: 40%;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+.pawn-y {
+    color: rgb(221, 206, 35);
+}
+
+.pawn-g {
+    color: rgb(0, 208, 14);
+}
+
+.pawn-r {
+    color: rgb(221, 85, 35);
+}
+
+.pawn-b {
+    color: rgb(0, 132, 208);
+}
+
+
+.dice-box-g {
+    width: 25%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    position: absolute;
+    top: 2%;
+    left: -27%;
+    z-index: 1;
+}
+
+.dice-box-r {
+    width: 25%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    position: absolute;
+    bottom: 2%;
+    left: -27%;
+    z-index: 1;
+}
+
+.dice-box-y {
+    width: 25%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    position: absolute;
+    top: 2%;
+    right: -27%;
+    z-index: 1;
+    transform: rotatey(180deg);
+}
+
+.dice-box-b {
+    width: 25%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    position: absolute;
+    bottom: 2%;
+    right: -27%;
+    z-index: 1;
+    transform: rotatey(180deg);
+}
+
+.dice-pic {
+    position: absolute;
+    left: 0px;
+    width: 50%;
+    height: 80%;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, blue, blue, #A4C6BD);
+    border: 2px solid yellow;
+}
+
+.pawn-g-pic,
+.pawn-r-pic,
+.pawn-y-pic,
+.pawn-b-pic {
+    font-size: 300%;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+.pawn-y-pic {
+    color: rgb(221, 206, 35);
+}
+
+.pawn-g-pic {
+    color: rgb(0, 208, 14);
+}
+
+.pawn-r-pic {
+    color: rgb(221, 85, 35);
+}
+
+.pawn-b-pic {
+    color: rgb(0, 132, 208);
+}
+
+.dice-container {
+    width: 50%;
+    height: 100%;
+    background-color: #A4C6BD;
+    position: absolute;
+    right: 0px;
+    /* background: linear-gradient(to top, rgb(196, 160, 160), rgb(208, 197, 197), white); */
+    /* border: 2px solid yellow; */
+    border-right: 2px solid yellow;
+    border-top: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-dice {
+    width: 80%;
+    height: 90%;
+    background: linear-gradient(to top, rgb(196, 160, 160), rgb(208, 197, 197), white);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+@media (max-width:1150px) {
+    .main-for-desktop {
+        height: 80vh;
+        aspect-ratio: 1 / 1;
+
+    }
+}
+
+@media (max-width:917px) {
+    .main-for-desktop {
+        height: 60vh;
+        aspect-ratio: 1 / 1;
+
+    }
+
+    .pawn-g,
+    .pawn-y,
+    .pawn-b,
+    .pawn-r {
+        font-size: 200%;
+    }
+
+    .pawn-g-pic,
+    .pawn-r-pic,
+    .pawn-y-pic,
+    .pawn-b-pic {
+        font-size: 200%;
+    }
+}
+
+@media (max-width:700px) {
+    .main-for-desktop {
+        height: 55vh;
+        aspect-ratio: 1 / 1;
+
+    }
+}
+
+
+@media (max-width:630px) {
+    .dice-box-g {
+        top: -12%;
+        left: 0px;
+    }
+    
+    .dice-box-r {
+        bottom: -12%;
+        left: 0px;
+    }
+    
+    .dice-box-y {
+        top: -12%;
+        right: 0px;
+    }
+    
+    .dice-box-b {
+        bottom: -12%;
+        right: 0px;
+    }
+}
+
+@media (max-width:550px) {
+
+    .pawn-g,
+    .pawn-y,
+    .pawn-b,
+    .pawn-r {
+        font-size: 200%;
+        bottom: 40%;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    }
+
+    .stamp {
+        font-size: 120%;
+    }
+
+}
+
+@media (max-width:410px) {
+    .pawn-g-pic,
+    .pawn-r-pic,
+    .pawn-y-pic,
+    .pawn-b-pic {
+        font-size: 150%;
+    }
+}
+
+
+@media (max-width:350px) {
+
+    .pawn-g,
+    .pawn-y,
+    .pawn-b,
+    .pawn-r {
+        font-size: 150%;
+        bottom: 40%;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    }
+
+    .stamp {
+        font-size: 80%;
+    }
+
 }
