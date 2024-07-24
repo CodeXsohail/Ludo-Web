@@ -421,8 +421,6 @@ main {
     background-color: #A4C6BD;
     position: absolute;
     right: 0px;
-    /* background: linear-gradient(to top, rgb(196, 160, 160), rgb(208, 197, 197), white); */
-    /* border: 2px solid yellow; */
     border-right: 2px solid yellow;
     border-top: 2px solid yellow;
     border-bottom: 2px solid yellow;
@@ -438,13 +436,33 @@ main {
     background: linear-gradient(to top, rgb(196, 160, 160), rgb(208, 197, 197), white);
     border: 1px solid black;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.main-dice i {
+    font-size: 80px;
+}
+
+.dice-displace {
+    position: absolute;
+    top: -150%;
+    transition: top .5s linear;
+}
+/* .main-dice:hover i {
+    top: 0px;
+} */
 
 @media (max-width:1150px) {
     .main-for-desktop {
         height: 80vh;
         aspect-ratio: 1 / 1;
 
+    }
+
+    .main-dice i {
+        font-size: 65px;
     }
 }
 
@@ -468,6 +486,10 @@ main {
     .pawn-b-pic {
         font-size: 200%;
     }
+
+    .main-dice i {
+        font-size: 48.5px;
+    }
 }
 
 @media (max-width:700px) {
@@ -475,6 +497,10 @@ main {
         height: 55vh;
         aspect-ratio: 1 / 1;
 
+    }
+
+    .main-dice i {
+        font-size: 45px;
     }
 }
 
@@ -498,6 +524,10 @@ main {
     .dice-box-b {
         bottom: -12%;
         right: 0px;
+    }
+
+    .main-dice i {
+        font-size: 11vw;
     }
 }
 
