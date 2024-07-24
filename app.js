@@ -69,7 +69,7 @@ function shiftDice() {
 
 document.querySelector('.md1').addEventListener('click', suffleDice);
 
-function diceMoveThenShift() {
+function diceMoveThenShift(luckyValue) {
     if (dicePosition == 1) {
         if (initGreen == true) {
             //movements lines
@@ -80,6 +80,22 @@ function diceMoveThenShift() {
             document.querySelector('.md2').addEventListener('click', suffleDice);
         }
         else {
+            if (luckyValue == 6) {
+                initGreen = true;
+                let pawng = document.querySelectorAll(".pawn-g");
+                pawng.forEach((pawn) => {
+                    pawn.classList.add("pawn-blink-g");
+                    pawn.addEventListener("click", (clicked) => {
+                        clicked.target.style.position = "relative";
+                        clicked.target.remove();
+                        document.querySelector('.g-shell6').appendChild(clicked.target);
+
+                        pawng.forEach((pawns) => {
+                            pawns.classList.remove("pawn-blink-g");
+                        })
+                    });
+                });
+            }
             setTimeout(shiftDice, 1000);
             dicePosition++;
             document.querySelector('.md1').removeEventListener('click', suffleDice);
@@ -96,6 +112,22 @@ function diceMoveThenShift() {
             document.querySelector('.md3').addEventListener('click', suffleDice);
         }
         else {
+            if (luckyValue == 6) {
+                initYellow = true;
+                let pawny = document.querySelectorAll(".pawn-y");
+                pawny.forEach((pawn) => {
+                    pawn.classList.add("pawn-blink-y");
+                    pawn.addEventListener("click", (clicked) => {
+                        clicked.target.style.position = "relative";
+                        clicked.target.remove();
+                        document.querySelector('.y-shell6').appendChild(clicked.target);
+
+                        pawny.forEach((pawns) => {
+                            pawns.classList.remove("pawn-blink-y");
+                        })
+                    });
+                });
+            }
             setTimeout(shiftDice, 1000);
             dicePosition++;
             document.querySelector('.md2').removeEventListener('click', suffleDice);
@@ -112,6 +144,22 @@ function diceMoveThenShift() {
             document.querySelector('.md4').addEventListener('click', suffleDice);
         }
         else {
+            if (luckyValue == 6) {
+                initBlue = true;
+                let pawnb = document.querySelectorAll(".pawn-b");
+                pawnb.forEach((pawn) => {
+                    pawn.classList.add("pawn-blink-b");
+                    pawn.addEventListener("click", (clicked) => {
+                        clicked.target.style.position = "relative";
+                        clicked.target.remove();
+                        document.querySelector('.b-shell6').appendChild(clicked.target);
+
+                        pawnb.forEach((pawns) => {
+                            pawns.classList.remove("pawn-blink-b");
+                        })
+                    });
+                });
+            }
             setTimeout(shiftDice, 1000);
             dicePosition++;
             document.querySelector('.md3').removeEventListener('click', suffleDice);
@@ -126,6 +174,22 @@ function diceMoveThenShift() {
             dicePosition = 1;
         }
         else {
+            if (luckyValue == 6) {
+                initBlue = true;
+                let pawnr = document.querySelectorAll(".pawn-r");
+                pawnr.forEach((pawn) => {
+                    pawn.classList.add("pawn-blink-r");
+                    pawn.addEventListener("click", (clicked) => {
+                        clicked.target.style.position = "relative";
+                        clicked.target.remove();
+                        document.querySelector('.r-shell6').appendChild(clicked.target);
+
+                        pawnr.forEach((pawns) => {
+                            pawns.classList.remove("pawn-blink-r");
+                        })
+                    });
+                });
+            }
             setTimeout(shiftDice, 1000);
             dicePosition = 1;
         }
@@ -204,19 +268,8 @@ function suffleDice() {
             tmpDiceElement.style.top = "0px";
         }, 200);
 
-        if (dicePosition == 1) {
-            initGreen = true;
-        }
-        else if (dicePosition == 2) {
-            initYellow = true;
-        }
-        else if (dicePosition == 3) {
-            initBlue = true;
-        }
-        else if (dicePosition == 4) {
-            initRed = true;
-        }
-        diceMoveThenShift();
+
+        diceMoveThenShift(res);
     }
 }
 

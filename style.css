@@ -307,6 +307,12 @@ main {
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
 }
 
+/* .pawn-gs {
+    font-size: 300%;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    color: rgb(0, 208, 14);
+} */
+
 .pawn-y {
     color: rgb(221, 206, 35);
 }
@@ -451,13 +457,81 @@ main {
     transition: top .5s linear;
 }
 
-.pawn-blink {
-    font-size: 400%;
-    /* bottom: 40%; */
-    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+.pawn-blink-g {
+    animation-name: highlight-animation-g;
 }
 
+.pawn-blink-y {
+    animation-name: highlight-animation-y;
+}
 
+.pawn-blink-b {
+    animation-name: highlight-animation-b;
+}
+
+.pawn-blink-r {
+    animation-name: highlight-animation-r;
+}
+
+.pawn-blink-g,
+.pawn-blink-y,
+.pawn-blink-b,
+.pawn-blink-r {
+    /* animation-name: highlight-animation; */
+    animation-duration: .4s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes highlight-animation-g {
+    from {
+        font-size: 300%;
+        color: rgb(0, 208, 14);
+    }
+    to {
+        font-size: 350%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-y {
+    from {
+        font-size: 300%;
+        color: rgb(221, 206, 35);
+    }
+    to {
+        font-size: 350%;
+        color: rgb(212, 204, 120);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-b {
+    from {
+        font-size: 300%;
+        color: rgb(0, 132, 208);
+    }
+    to {
+        font-size: 350%;
+        color: rgb(60, 145, 194);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-r {
+    from {
+        font-size: 300%;
+        color: rgb(221, 85, 35);
+    }
+    to {
+        font-size: 350%;
+        color: rgb(210, 142, 117);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
 
 @media (max-width:1150px) {
     .main-for-desktop {
@@ -495,7 +569,56 @@ main {
     .main-dice i {
         font-size: 48.5px;
     }
-}
+
+    @keyframes highlight-animation-g {
+        from {
+            font-size: 200%;
+            color: rgb(0, 208, 14);
+        }
+        to {
+            font-size: 240%;
+            color: greenyellow;
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    @keyframes highlight-animation-y {
+        from {
+            font-size: 200%;
+            color: rgb(221, 206, 35);
+        }
+        to {
+            font-size: 240%;
+            color: rgb(212, 204, 120);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    @keyframes highlight-animation-b {
+        from {
+            font-size: 200%;
+            color: rgb(0, 132, 208);
+        }
+        to {
+            font-size: 240%;
+            color: rgb(60, 145, 194);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    @keyframes highlight-animation-r {
+        from {
+            font-size: 200%;
+            color: rgb(221, 85, 35);
+        }
+        to {
+            font-size: 240%;
+            color: rgb(210, 142, 117);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    }
 
 @media (max-width:700px) {
     .main-for-desktop {
@@ -577,5 +700,52 @@ main {
     .stamp {
         font-size: 80%;
     }
-
+    @keyframes highlight-animation-g {
+        from {
+            font-size: 150%;
+            color: rgb(0, 208, 14);
+        }
+        to {
+            font-size: 200%;
+            color: greenyellow;
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    @keyframes highlight-animation-y {
+        from {
+            font-size: 150%;
+            color: rgb(221, 206, 35);
+        }
+        to {
+            font-size: 200%;
+            color: rgb(212, 204, 120);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    @keyframes highlight-animation-b {
+        from {
+            font-size: 150%;
+            color: rgb(0, 132, 208);
+        }
+        to {
+            font-size: 200%;
+            color: rgb(60, 145, 194);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
+    @keyframes highlight-animation-r {
+        from {
+            font-size: 150%;
+            color: rgb(221, 85, 35);
+        }
+        to {
+            font-size: 200%;
+            color: rgb(210, 142, 117);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+        }
+    }
+    
 }
