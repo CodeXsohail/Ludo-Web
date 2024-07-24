@@ -450,9 +450,14 @@ main {
     top: -150%;
     transition: top .5s linear;
 }
-/* .main-dice:hover i {
-    top: 0px;
-} */
+
+.pawn-blink {
+    font-size: 400%;
+    /* bottom: 40%; */
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+
 
 @media (max-width:1150px) {
     .main-for-desktop {
