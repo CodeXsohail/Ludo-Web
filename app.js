@@ -92,7 +92,7 @@ function diceMoveThenShift(luckyValue) {
 
                         pawng.forEach((pawns) => {
                             pawns.classList.remove("pawn-blink-g");
-                        })
+                        });
                     });
                 });
             }
@@ -124,7 +124,7 @@ function diceMoveThenShift(luckyValue) {
 
                         pawny.forEach((pawns) => {
                             pawns.classList.remove("pawn-blink-y");
-                        })
+                        });
                     });
                 });
             }
@@ -156,7 +156,7 @@ function diceMoveThenShift(luckyValue) {
 
                         pawnb.forEach((pawns) => {
                             pawns.classList.remove("pawn-blink-b");
-                        })
+                        });
                     });
                 });
             }
@@ -186,7 +186,7 @@ function diceMoveThenShift(luckyValue) {
 
                         pawnr.forEach((pawns) => {
                             pawns.classList.remove("pawn-blink-r");
-                        })
+                        });
                     });
                 });
             }
