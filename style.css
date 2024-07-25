@@ -86,34 +86,43 @@ main {
 
 .shells {
     border: var(--border-size) solid black;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    justify-content: center; 
     align-items: center;
 }
 
 .stamp {
     font-size: 200%;
+    z-index: 0;
+    grid-area: 1/1;
 }
 
 .green-arrow {
     font-size: 170%;
     color: green;
+    z-index: 0;
+    grid-area: 1/1;
 }
 
 .red-arrow {
     font-size: 170%;
     color: red;
+    z-index: 0;
+    grid-area: 1/1;
 }
 
 .yellow-arrow {
     font-size: 170%;
     color: rgb(227, 227, 5);
+    z-index: 0;
+    grid-area: 1/1;
 }
 
 .blue-arrow {
     font-size: 170%;
     color: blue;
+    z-index: 0;
+    grid-area: 1/1;
 }
 
 .yellow-field {
@@ -306,13 +315,10 @@ main {
     font-size: 300%;
     bottom: 40%;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    grid-area: 1/1;
+    z-index:1;
 }
 
-/* .pawn-gs {
-    font-size: 300%;
-    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
-    color: rgb(0, 208, 14);
-} */
 
 .pawn-y {
     color: rgb(221, 206, 35);
@@ -618,6 +624,10 @@ main {
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
+
+    .stamp {
+        font-size: 20px;
+    }
     
     }
 
@@ -657,6 +667,10 @@ main {
 
     .main-dice i {
         font-size: 11vw;
+    }
+
+    .stamp {
+        font-size: 30px;
     }
 }
 
@@ -748,5 +762,36 @@ main {
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
+
+    .green-arrow,
+    .yellow-arrow,
+    .blue-arrow,
+    .red-arrow {
+        font-size: 80%;
+    }
+   
     
+}
+
+@media (max-width:245px) {
+    .pawn-g,
+    .pawn-y,
+    .pawn-b,
+    .pawn-r {
+        font-size: 80%;
+        bottom: 40%;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    }
+
+    .stamp {
+        font-size: 60%;
+    }
+
+    .pawn-g-pic,
+    .pawn-r-pic,
+    .pawn-y-pic,
+    .pawn-b-pic {
+        font-size: 80%;
+    }
+
 }
