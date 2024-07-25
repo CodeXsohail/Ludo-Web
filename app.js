@@ -61,140 +61,144 @@ function selectPlayer() {
     }
 }
 
-function shiftDice() {
-    diceContainer.childNodes[0].remove();
-    tmpDiceElement.classList.remove("dice-displace");
-    diceContainerNext.appendChild(tmpDiceElement);
+function shiftDice(playerNo) {
+    if (playerNo == 1) {
+        setTimeout(() => {
+            diceContainer.childNodes[0].remove();
+            tmpDiceElement.classList.remove("dice-displace");
+            diceContainerNext.appendChild(tmpDiceElement);
+
+            dicePosition = 1;
+            document.querySelector(".md4").removeEventListener('click', suffleDice);
+            document.querySelector(`.md${playerNo}`).addEventListener('click', suffleDice);
+
+        }, 1000);
+        // dicePosition = 1;
+        // document.querySelector(".md4").removeEventListener('click', suffleDice);
+        // document.querySelector(`.md${playerNo}`).addEventListener('click', suffleDice);
+    }
+    else {
+        setTimeout(() => {
+            diceContainer.childNodes[0].remove();
+            tmpDiceElement.classList.remove("dice-displace");
+            diceContainerNext.appendChild(tmpDiceElement);
+
+            dicePosition++;
+            document.querySelector(`.md${playerNo - 1}`).removeEventListener('click', suffleDice);
+            document.querySelector(`.md${playerNo}`).addEventListener('click', suffleDice);
+
+        }, 1000);
+        // dicePosition++;
+        // document.querySelector(`.md${playerNo - 1}`).removeEventListener('click', suffleDice);
+        // document.querySelector(`.md${playerNo}`).addEventListener('click', suffleDice);
+    }
 }
 
 document.querySelector('.md1').addEventListener('click', suffleDice);
+
+
+
+
+function initPawnBySix(player) {
+    let pawns = document.querySelectorAll(`.pawn-${player}`);
+    
+    function handleClick(event) {
+        const clicked = event.target;
+        clicked.style.position = "relative";
+        clicked.remove();
+        document.querySelector(`.${player}-shell6`).appendChild(clicked);
+
+        let offState = Array.from(clicked.classList).find(cls => cls.startsWith(`pawn-${player}`) && cls.endsWith('-off'));
+        
+        let onState = offState.replace("off", "on");
+        clicked.classList.remove(offState);
+        clicked.classList.add(onState);
+
+
+        console.log(offState, onState);
+        pawns.forEach((pawn) => {
+            pawn.classList.remove(`pawn-blink-${player}`);
+            pawn.removeEventListener("click", handleClick); // Remove event listener
+        });
+    }
+
+    pawns.forEach((pawn) => {
+        pawn.classList.add(`pawn-blink-${player}`);
+        pawn.addEventListener("click", handleClick);
+    });
+
+}
+
+
 
 function diceMoveThenShift(luckyValue) {
     if (dicePosition == 1) {
         if (initGreen == true) {
             //movements lines
+            if (luckyValue == 6) {
+                initPawnBySix('g');
+            }
 
-            setTimeout(shiftDice, 1000);
-            dicePosition++;
-            document.querySelector('.md1').removeEventListener('click', suffleDice);
-            document.querySelector('.md2').addEventListener('click', suffleDice);
+
+            shiftDice(2);
+
         }
         else {
             if (luckyValue == 6) {
                 initGreen = true;
-                let pawng = document.querySelectorAll(".pawn-g");
-                pawng.forEach((pawn) => {
-                    pawn.classList.add("pawn-blink-g");
-                    pawn.addEventListener("click", (clicked) => {
-                        clicked.target.style.position = "relative";
-                        clicked.target.remove();
-                        document.querySelector('.g-shell6').appendChild(clicked.target);
-
-                        pawng.forEach((pawns) => {
-                            pawns.classList.remove("pawn-blink-g");
-                        });
-                    });
-                });
+                initPawnBySix('g');
             }
-            setTimeout(shiftDice, 1000);
-            dicePosition++;
-            document.querySelector('.md1').removeEventListener('click', suffleDice);
-            document.querySelector('.md2').addEventListener('click', suffleDice);
+
+            shiftDice(2);
         }
     }
     else if (dicePosition == 2) {
         if (initYellow == true) {
             //movements lines
 
-            setTimeout(shiftDice, 1000);
-            dicePosition++;
-            document.querySelector('.md2').removeEventListener('click', suffleDice);
-            document.querySelector('.md3').addEventListener('click', suffleDice);
+
+            shiftDice(3);
         }
         else {
             if (luckyValue == 6) {
                 initYellow = true;
-                let pawny = document.querySelectorAll(".pawn-y");
-                pawny.forEach((pawn) => {
-                    pawn.classList.add("pawn-blink-y");
-                    pawn.addEventListener("click", (clicked) => {
-                        clicked.target.style.position = "relative";
-                        clicked.target.remove();
-                        document.querySelector('.y-shell6').appendChild(clicked.target);
-
-                        pawny.forEach((pawns) => {
-                            pawns.classList.remove("pawn-blink-y");
-                        });
-                    });
-                });
+                initPawnBySix('y');
             }
-            setTimeout(shiftDice, 1000);
-            dicePosition++;
-            document.querySelector('.md2').removeEventListener('click', suffleDice);
-            document.querySelector('.md3').addEventListener('click', suffleDice);
+
+            shiftDice(3);
         }
     }
     else if (dicePosition == 3) {
         if (initBlue == true) {
             //movements lines
 
-            setTimeout(shiftDice, 1000);
-            dicePosition++;
-            document.querySelector('.md3').removeEventListener('click', suffleDice);
-            document.querySelector('.md4').addEventListener('click', suffleDice);
+
+            shiftDice(4);
         }
         else {
             if (luckyValue == 6) {
                 initBlue = true;
-                let pawnb = document.querySelectorAll(".pawn-b");
-                pawnb.forEach((pawn) => {
-                    pawn.classList.add("pawn-blink-b");
-                    pawn.addEventListener("click", (clicked) => {
-                        clicked.target.style.position = "relative";
-                        clicked.target.remove();
-                        document.querySelector('.b-shell6').appendChild(clicked.target);
-
-                        pawnb.forEach((pawns) => {
-                            pawns.classList.remove("pawn-blink-b");
-                        });
-                    });
-                });
+                initPawnBySix('b');
             }
-            setTimeout(shiftDice, 1000);
-            dicePosition++;
-            document.querySelector('.md3').removeEventListener('click', suffleDice);
-            document.querySelector('.md4').addEventListener('click', suffleDice);
+
+            shiftDice(4);
         }
     }
     else if (dicePosition == 4) {
         if (initRed == true) {
             //movements lines
 
-            setTimeout(shiftDice, 1000);
-            dicePosition = 1;
+
+            shiftDice(1);
         }
         else {
             if (luckyValue == 6) {
-                initBlue = true;
-                let pawnr = document.querySelectorAll(".pawn-r");
-                pawnr.forEach((pawn) => {
-                    pawn.classList.add("pawn-blink-r");
-                    pawn.addEventListener("click", (clicked) => {
-                        clicked.target.style.position = "relative";
-                        clicked.target.remove();
-                        document.querySelector('.r-shell6').appendChild(clicked.target);
-
-                        pawnr.forEach((pawns) => {
-                            pawns.classList.remove("pawn-blink-r");
-                        });
-                    });
-                });
+                initRed = true;
+                initPawnBySix('r');
             }
-            setTimeout(shiftDice, 1000);
-            dicePosition = 1;
+
+            shiftDice(1);
         }
-        document.querySelector('.md4').removeEventListener('click', suffleDice);
-        document.querySelector('.md1').addEventListener('click', suffleDice);
     }
 }
 
