@@ -37,8 +37,8 @@ main {
 }
 
 .player {
-    width: 35%;
-    height: 35%;
+    height: 39.5%;
+    width: 39.5%;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -76,18 +76,17 @@ main {
 }
 
 .field {
-    width: 29%;
-    height: 35%;
+    height: 40%;
+    width: 20%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    padding-top: .5%;
 }
 
 .shells {
     border: var(--border-size) solid black;
     display: grid;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
 
@@ -127,87 +126,82 @@ main {
 
 .yellow-field {
     position: absolute;
-    top: 0px;
-    left: 35.5%;
+    top: .5%;
+    left: 40%;
 }
 
 
 .blue-field {
-    width: 35%;
-    height: 29%;
+    height: 20%;
+    width: 40%;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, 1fr);
     position: absolute;
-    top: 35%;
-    left: 64.5%;
-    right: 0px;
+    top: 40%;
+    right: .5%;
 }
 
 .red-field {
-    width: 29%;
-    height: 35%;
+    height: 40%;
+    width: 20%;
     position: absolute;
-    bottom: 0px;
-    left: 35.5%;
-    padding-top: 0px;
-    padding-bottom: .5%;
+    bottom: .5%;
+    left: 40%;
 }
 
 .green-field {
-    width: 35%;
-    height: 29%;
+    height: 20%;
+    width: 40%;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    padding-left: .5%;
-    padding-right: 0px;
     position: absolute;
-    top: 35%;
-    left: 0px;
+    top: 40%;
+    left: .5%;
 }
 
 .home {
-    width: 29%;
-    height: 29%;
+    height: 20%;
+    width: 20%;
     background-color: blue;
     position: absolute;
-    top: 35.5%;
-    left: 35.5%;
+    top: 40%;
+    left: 40%;
 }
 
-.y-shell6,
-.y-shell5,
-.y-shell8,
-.y-shell11,
-.y-shell14,
-.y-shell17 {
+.y-shell0,
+.y-shell51,
+.y-shell52,
+.y-shell53,
+.y-shell54,
+.y-shell55 {
     background-color: yellow;
 }
 
-.r-shell6,
-.r-shell5,
-.r-shell8,
-.r-shell11,
-.r-shell14,
-.r-shell17 {
+.r-shell0,
+.r-shell51,
+.r-shell52,
+.r-shell53,
+.r-shell54,
+.r-shell55 {
     background-color: red;
 }
 
 
-.g-shell6,
-.g-shell5,
-.g-shell8,
-.g-shell11,
-.g-shell14,
-.g-shell17 {
+.g-shell0,
+.g-shell51,
+.g-shell52,
+.g-shell53,
+.g-shell54,
+.g-shell55 {
     background-color: green;
 }
 
-.b-shell6,
-.b-shell5,
-.b-shell8,
-.b-shell11,
-.b-shell14,
-.b-shell17 {
+.b-shell0,
+.b-shell51,
+.b-shell52,
+.b-shell53,
+.b-shell54,
+.b-shell55 {
     background-color: blue;
 }
 
@@ -312,11 +306,11 @@ main {
 .pawn-b,
 .pawn-r {
     position: absolute;
-    font-size: 300%;
+    font-size: 250%;
     bottom: 40%;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
     grid-area: 1/1;
-    z-index:1;
+    z-index: 1;
 }
 
 
@@ -492,11 +486,14 @@ main {
     animation-direction: alternate;
 }
 
+/* animation when pawn is in home */
+
 @keyframes highlight-animation-g {
     from {
         font-size: 300%;
         color: rgb(0, 208, 14);
     }
+
     to {
         font-size: 350%;
         color: greenyellow;
@@ -509,6 +506,7 @@ main {
         font-size: 300%;
         color: rgb(221, 206, 35);
     }
+
     to {
         font-size: 350%;
         color: rgb(212, 204, 120);
@@ -521,6 +519,7 @@ main {
         font-size: 300%;
         color: rgb(0, 132, 208);
     }
+
     to {
         font-size: 350%;
         color: rgb(60, 145, 194);
@@ -533,11 +532,95 @@ main {
         font-size: 300%;
         color: rgb(221, 85, 35);
     }
+
     to {
         font-size: 350%;
         color: rgb(210, 142, 117);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
+}
+
+/* animation when pawns are released */
+
+@keyframes highlight-animation-on-g {
+    from {
+        font-size: 150%;
+        color: rgb(0, 208, 14);
+    }
+
+    to {
+        font-size: 200%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-y {
+    from {
+        font-size: 150%;
+        color: rgb(221, 206, 35);
+    }
+
+    to {
+        font-size: 200%;
+        color: rgb(212, 204, 120);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-b {
+    from {
+        font-size: 150%;
+        color: rgb(0, 132, 208);
+    }
+
+    to {
+        font-size: 200%;
+        color: rgb(60, 145, 194);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-r {
+    from {
+        font-size: 150%;
+        color: rgb(221, 85, 35);
+    }
+
+    to {
+        font-size: 200%;
+        color: rgb(210, 142, 117);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+/* setting animation for pawns which are released */
+.pawn-g1-on,
+.pawn-g2-on,
+.pawn-g3-on,
+.pawn-g4-on {
+    animation-name: highlight-animation-on-g;
+
+}
+.pawn-y1-on,
+.pawn-y2-on,
+.pawn-y3-on,
+.pawn-y4-on {
+    animation-name: highlight-animation-on-y;
+
+}
+.pawn-b1-on,
+.pawn-b2-on,
+.pawn-b3-on,
+.pawn-b4-on {
+    animation-name: highlight-animation-on-b;
+
+}
+.pawn-r1-on,
+.pawn-r2-on,
+.pawn-r3-on,
+.pawn-r4-on {
+    animation-name: highlight-animation-on-r;
 }
 
 @media (max-width:1150px) {
@@ -563,7 +646,7 @@ main {
     .pawn-y,
     .pawn-b,
     .pawn-r {
-        font-size: 200%;
+        font-size: 180%;
     }
 
     .pawn-g-pic,
@@ -582,42 +665,46 @@ main {
             font-size: 200%;
             color: rgb(0, 208, 14);
         }
+
         to {
             font-size: 240%;
             color: greenyellow;
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
-    
+
     @keyframes highlight-animation-y {
         from {
             font-size: 200%;
             color: rgb(221, 206, 35);
         }
+
         to {
             font-size: 240%;
             color: rgb(212, 204, 120);
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
-    
+
     @keyframes highlight-animation-b {
         from {
             font-size: 200%;
             color: rgb(0, 132, 208);
         }
+
         to {
             font-size: 240%;
             color: rgb(60, 145, 194);
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
-    
+
     @keyframes highlight-animation-r {
         from {
             font-size: 200%;
             color: rgb(221, 85, 35);
         }
+
         to {
             font-size: 240%;
             color: rgb(210, 142, 117);
@@ -625,11 +712,66 @@ main {
         }
     }
 
+    /* animation when pawns are released */
+
+@keyframes highlight-animation-on-g {
+    from {
+        font-size: 100%;
+        color: rgb(0, 208, 14);
+    }
+
+    to {
+        font-size: 150%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-y {
+    from {
+        font-size: 100%;
+        color: rgb(221, 206, 35);
+    }
+
+    to {
+        font-size: 150%;
+        color: rgb(212, 204, 120);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-b {
+    from {
+        font-size: 100%;
+        color: rgb(0, 132, 208);
+    }
+
+    to {
+        font-size: 150%;
+        color: rgb(60, 145, 194);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-r {
+    from {
+        font-size: 100%;
+        color: rgb(221, 85, 35);
+    }
+
+    to {
+        font-size: 150%;
+        color: rgb(210, 142, 117);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+
     .stamp {
         font-size: 20px;
     }
-    
-    }
+
+}
 
 @media (max-width:700px) {
     .main-for-desktop {
@@ -649,17 +791,17 @@ main {
         top: -12%;
         left: 0px;
     }
-    
+
     .dice-box-r {
         bottom: -12%;
         left: 0px;
     }
-    
+
     .dice-box-y {
         top: -12%;
         right: 0px;
     }
-    
+
     .dice-box-b {
         bottom: -12%;
         right: 0px;
@@ -689,9 +831,11 @@ main {
         font-size: 120%;
     }
 
+
 }
 
 @media (max-width:410px) {
+
     .pawn-g-pic,
     .pawn-r-pic,
     .pawn-y-pic,
@@ -715,47 +859,52 @@ main {
     .stamp {
         font-size: 80%;
     }
+
     @keyframes highlight-animation-g {
         from {
             font-size: 150%;
             color: rgb(0, 208, 14);
         }
+
         to {
             font-size: 200%;
             color: greenyellow;
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
-    
+
     @keyframes highlight-animation-y {
         from {
             font-size: 150%;
             color: rgb(221, 206, 35);
         }
+
         to {
             font-size: 200%;
             color: rgb(212, 204, 120);
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
-    
+
     @keyframes highlight-animation-b {
         from {
             font-size: 150%;
             color: rgb(0, 132, 208);
         }
+
         to {
             font-size: 200%;
             color: rgb(60, 145, 194);
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
-    
+
     @keyframes highlight-animation-r {
         from {
             font-size: 150%;
             color: rgb(221, 85, 35);
         }
+
         to {
             font-size: 200%;
             color: rgb(210, 142, 117);
@@ -769,11 +918,12 @@ main {
     .red-arrow {
         font-size: 80%;
     }
-   
-    
+
+
 }
 
 @media (max-width:245px) {
+
     .pawn-g,
     .pawn-y,
     .pawn-b,
@@ -784,6 +934,13 @@ main {
     }
 
     .stamp {
+        font-size: 45%;
+    }
+
+    .green-arrow,
+    .yellow-arrow,
+    .blue-arrow,
+    .red-arrow {
         font-size: 60%;
     }
 
