@@ -595,31 +595,31 @@ main {
 }
 
 /* setting animation for pawns which are released */
-.pawn-g1-on,
-.pawn-g2-on,
-.pawn-g3-on,
-.pawn-g4-on {
+.g1-on,
+.g2-on,
+.g3-on,
+.g4-on {
     animation-name: highlight-animation-on-g;
 
 }
-.pawn-y1-on,
-.pawn-y2-on,
-.pawn-y3-on,
-.pawn-y4-on {
+.y1-on,
+.y2-on,
+.y3-on,
+.y4-on {
     animation-name: highlight-animation-on-y;
 
 }
-.pawn-b1-on,
-.pawn-b2-on,
-.pawn-b3-on,
-.pawn-b4-on {
+.b1-on,
+.b2-on,
+.b3-on,
+.b4-on {
     animation-name: highlight-animation-on-b;
 
 }
-.pawn-r1-on,
-.pawn-r2-on,
-.pawn-r3-on,
-.pawn-r4-on {
+.r1-on,
+.r2-on,
+.r3-on,
+.r4-on {
     animation-name: highlight-animation-on-r;
 }
 
@@ -842,6 +842,61 @@ main {
     .pawn-b-pic {
         font-size: 150%;
     }
+    
+/* animation when pawns are released */
+
+@keyframes highlight-animation-on-g {
+    from {
+        font-size: 100%;
+        color: rgb(0, 208, 14);
+    }
+
+    to {
+        font-size: 150%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-y {
+    from {
+        font-size: 100%;
+        color: rgb(221, 206, 35);
+    }
+
+    to {
+        font-size: 150%;
+        color: rgb(212, 204, 120);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-b {
+    from {
+        font-size: 100%;
+        color: rgb(0, 132, 208);
+    }
+
+    to {
+        font-size: 150%;
+        color: rgb(60, 145, 194);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-r {
+    from {
+        font-size: 100%;
+        color: rgb(221, 85, 35);
+    }
+
+    to {
+        font-size: 150%;
+        color: rgb(210, 142, 117);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
 }
 
 

@@ -150,7 +150,7 @@ function shiftDice(playerNo) {
 
 document.querySelector('.md1').addEventListener('click', suffleDice);
 
-function savePosition(player,tokenNumber,value,replace = false) {
+function savePosition(player, tokenNumber, value, replace = false) {
     if (replace == true) {
         if (player == 'g') {
             if (tokenNumber == "token-g1") {
@@ -166,7 +166,7 @@ function savePosition(player,tokenNumber,value,replace = false) {
                 token.green.fourth.position = value;
             }
         }
-    
+
         if (player == 'y') {
             if (tokenNumber == "token-y1") {
                 token.yellow.first.position = value;
@@ -181,7 +181,7 @@ function savePosition(player,tokenNumber,value,replace = false) {
                 token.yellow.fourth.position = value;
             }
         }
-    
+
         if (player == 'b') {
             if (tokenNumber == "token-b1") {
                 token.blue.first.position = value;
@@ -196,7 +196,7 @@ function savePosition(player,tokenNumber,value,replace = false) {
                 token.blue.fourth.position = value;
             }
         }
-    
+
         if (player == 'r') {
             if (tokenNumber == "token-r1") {
                 token.red.first.position = value;
@@ -230,7 +230,7 @@ function savePosition(player,tokenNumber,value,replace = false) {
                 return token.green.fourth.position;
             }
         }
-    
+
         if (player == 'y') {
             if (tokenNumber == "token-y1") {
                 token.yellow.first.position += value;
@@ -249,7 +249,7 @@ function savePosition(player,tokenNumber,value,replace = false) {
                 return token.yellow.fourth.position;
             }
         }
-    
+
         if (player == 'b') {
             if (tokenNumber == "token-b1") {
                 token.blue.first.position += value;
@@ -268,7 +268,7 @@ function savePosition(player,tokenNumber,value,replace = false) {
                 return token.blue.fourth.position;
             }
         }
-    
+
         if (player == 'r') {
             if (tokenNumber == "token-r1") {
                 token.red.first.position += value;
@@ -288,46 +288,57 @@ function savePosition(player,tokenNumber,value,replace = false) {
             }
         }
     }
-    
+
 
 }
 
 
 function initPawnBySix(player) {
-    let pawns = document.querySelectorAll(`.pawn-${player}`);
-
+    let pawns;
+    if (luckyValue == 6)
+        pawns = document.querySelectorAll(`.pawn-${player}`);
+    else {
+            pawns = document.querySelectorAll(`.${player}1-on, .${player}2-on, .${player}3-on, .${player}4-on`);
+        console.dir(pawns);
+    }
+    
     function handleClick(event) {
         const clicked = event.target;
         let onState;
         let offState;
         let checkState;
         let tokenNumber;
-        
+
         clicked.style.position = "relative";
         clicked.remove();
 
         //when pawn is released
-        checkState = Array.from(clicked.classList).find(cls => cls.startsWith(`pawn-${player}`) && cls.endsWith('-on'));
+        checkState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-on'));
         if (checkState) {
             tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
-            let newPosition = savePosition(player,tokenNumber,6);
+            let newPosition = savePosition(player, tokenNumber, luckyValue);
             console.log(newPosition);
             document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
             console.log(checkState);
         }
 
         //when pawn is not released
-        offState = Array.from(clicked.classList).find(cls => cls.startsWith(`pawn-${player}`) && cls.endsWith('-off'));
-        if (offState) {
-            onState = offState.replace("off", "on");
-            clicked.classList.remove(offState);
-            clicked.classList.add(onState);
-            // clicked.classList.add(`p-${player}`);
-            console.log(offState, onState);
-            document.querySelector(`.${player}-shell0`).appendChild(clicked);
-            tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
-            savePosition(player,tokenNumber,0,true);
+        if (luckyValue == 6) {
+            offState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-off'));
+            if (offState) {
+                onState = offState.replace("off", "on");
+                clicked.classList.remove(offState);
+                clicked.classList.add(onState);
+                // clicked.classList.add(`p-${player}`);
+                console.log(offState, onState);
+                document.querySelector(`.${player}-shell0`).appendChild(clicked);
+                tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
+                savePosition(player, tokenNumber, 0, true);
+            }
+        } else {
+
         }
+
         pawns.forEach((pawn) => {
             pawn.classList.remove(`pawn-blink-${player}`);
             pawn.removeEventListener("click", handleClick); // Remove event listener
@@ -343,7 +354,7 @@ function initPawnBySix(player) {
 
 
 
-function diceMoveThenShift() {
+function diceMoveThenShift(luckyValue) {
     if (dicePosition == 1) {
         if (initGreen == true) {
             //movements lines
@@ -351,11 +362,9 @@ function diceMoveThenShift() {
                 initPawnBySix('g');
             }
             else {
+                initPawnBySix('g');
                 shiftDice(2);
             }
-
-
-            // shiftDice(2);
 
         }
         else {
@@ -363,10 +372,9 @@ function diceMoveThenShift() {
                 initGreen = true;
                 initPawnBySix('g');
             } else {
+                initPawnBySix('g');
                 shiftDice(2);
             }
-
-            // shiftDice(2);
         }
     }
     else if (dicePosition == 2) {
@@ -376,20 +384,22 @@ function diceMoveThenShift() {
                 initPawnBySix('y');
             }
             else {
+                initPawnBySix('y');
                 shiftDice(3);
             }
 
-           
+
         }
         else {
             if (luckyValue == 6) {
                 initYellow = true;
                 initPawnBySix('y');
             } else {
+                initPawnBySix('y');
                 shiftDice(3);
             }
 
-           
+
         }
     }
     else if (dicePosition == 3) {
@@ -398,20 +408,22 @@ function diceMoveThenShift() {
             if (luckyValue == 6) {
                 initPawnBySix('b');
             } else {
+                initPawnBySix('b');
                 shiftDice(4);
             }
 
-            
+
         }
         else {
             if (luckyValue == 6) {
                 initBlue = true;
                 initPawnBySix('b');
             } else {
+                initPawnBySix('b');
                 shiftDice(4);
             }
 
-           
+
         }
     }
     else if (dicePosition == 4) {
@@ -421,19 +433,21 @@ function diceMoveThenShift() {
             if (luckyValue == 6) {
                 initPawnBySix('r');
             } else {
+                initPawnBySix('r');
                 shiftDice(1);
             }
-           
+
         }
         else {
             if (luckyValue == 6) {
                 initRed = true;
                 initPawnBySix('r');
             } else {
+                initPawnBySix('r');
                 shiftDice(1);
             }
 
-          
+
         }
     }
 }
@@ -500,7 +514,7 @@ function suffleDice() {
             tmpDiceElement.style.top = "0px";
         }, 200);
         luckyValue = 5;
-        diceMoveThenShift();
+        diceMoveThenShift(res);
     }
     else {
         tmpDiceElement = document.createElement("i");
