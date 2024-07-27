@@ -16,11 +16,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to right, #b5e48c, #457b9d);
 }
 
 main {
     background-color: rgb(254, 240, 240);
-    /* display: flex; */
     position: relative;
 }
 
@@ -306,13 +306,31 @@ main {
 .pawn-b,
 .pawn-r {
     position: absolute;
-    font-size: 250%;
+    font-size: 300%;
     bottom: 40%;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
     grid-area: 1/1;
     z-index: 1;
 }
 
+.g1-on,
+.g2-on,
+.g3-on,
+.g4-on,
+.y1-on,
+.y2-on,
+.y3-on,
+.y4-on,
+.b1-on,
+.b2-on,
+.b3-on,
+.b4-on,
+.r1-on,
+.r2-on,
+.r3-on,
+.r4-on {
+    font-size: 250%;
+}
 
 .pawn-y {
     color: rgb(221, 206, 35);
@@ -544,12 +562,12 @@ main {
 
 @keyframes highlight-animation-on-g {
     from {
-        font-size: 150%;
+        font-size: 200%;
         color: rgb(0, 208, 14);
     }
 
     to {
-        font-size: 200%;
+        font-size: 250%;
         color: greenyellow;
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
@@ -557,25 +575,25 @@ main {
 
 @keyframes highlight-animation-on-y {
     from {
-        font-size: 150%;
+        font-size: 200%;
         color: rgb(221, 206, 35);
     }
 
     to {
-        font-size: 200%;
-        color: rgb(212, 204, 120);
+        font-size: 250%;
+        color: rgb(201, 159, 23);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
 }
 
 @keyframes highlight-animation-on-b {
     from {
-        font-size: 150%;
+        font-size: 200%;
         color: rgb(0, 132, 208);
     }
 
     to {
-        font-size: 200%;
+        font-size: 250%;
         color: rgb(60, 145, 194);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
@@ -583,12 +601,12 @@ main {
 
 @keyframes highlight-animation-on-r {
     from {
-        font-size: 150%;
+        font-size: 200%;
         color: rgb(221, 85, 35);
     }
 
     to {
-        font-size: 200%;
+        font-size: 250%;
         color: rgb(210, 142, 117);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
@@ -633,6 +651,62 @@ main {
     .main-dice i {
         font-size: 65px;
     }
+
+/* animation when pawns are released */
+
+@keyframes highlight-animation-on-g {
+    from {
+        font-size: 180%;
+        color: rgb(0, 208, 14);
+    }
+
+    to {
+        font-size: 220%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-y {
+    from {
+        font-size: 180%;
+        color: rgb(221, 206, 35);
+    }
+
+    to {
+        font-size: 220%;
+        color: rgb(201, 159, 23);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-b {
+    from {
+        font-size: 180%;
+        color: rgb(0, 132, 208);
+    }
+
+    to {
+        font-size: 220%;
+        color: rgb(60, 145, 194);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-r {
+    from {
+        font-size: 180%;
+        color: rgb(221, 85, 35);
+    }
+
+    to {
+        font-size: 220%;
+        color: rgb(210, 142, 117);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+
 }
 
 @media (max-width:917px) {
@@ -681,7 +755,7 @@ main {
 
         to {
             font-size: 240%;
-            color: rgb(212, 204, 120);
+            color: rgb(201, 159, 23);
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
         }
     }
@@ -716,12 +790,12 @@ main {
 
 @keyframes highlight-animation-on-g {
     from {
-        font-size: 100%;
+        font-size: 140%;
         color: rgb(0, 208, 14);
     }
 
     to {
-        font-size: 150%;
+        font-size: 180%;
         color: greenyellow;
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
@@ -729,39 +803,39 @@ main {
 
 @keyframes highlight-animation-on-y {
     from {
-        font-size: 100%;
+        font-size: 140%;
         color: rgb(221, 206, 35);
     }
 
     to {
-        font-size: 150%;
-        color: rgb(212, 204, 120);
+        font-size: 180%;
+        color: rgb(201, 159, 23);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
 }
 
 @keyframes highlight-animation-on-b {
     from {
-        font-size: 100%;
-        color: rgb(0, 132, 208);
+        font-size: 140%;
+        color: rgb(24, 150, 223);
     }
 
     to {
-        font-size: 150%;
-        color: rgb(60, 145, 194);
+        font-size: 180%;
+        color: rgb(0, 174, 255);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
 }
 
 @keyframes highlight-animation-on-r {
     from {
-        font-size: 100%;
+        font-size: 140%;
         color: rgb(221, 85, 35);
     }
 
     to {
-        font-size: 150%;
-        color: rgb(210, 142, 117);
+        font-size: 180%;
+        color: rgb(100, 30, 5);
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
     }
 }
@@ -770,6 +844,26 @@ main {
     .fa-star {
         font-size: 20px;
     }
+
+    .g1-on,
+    .g2-on,
+    .g3-on,
+    .g4-on,
+    .y1-on,
+    .y2-on,
+    .y3-on,
+    .y4-on,
+    .b1-on,
+    .b2-on,
+    .b3-on,
+    .b4-on,
+    .r1-on,
+    .r2-on,
+    .r3-on,
+    .r4-on {
+        font-size: 170%;
+    }
+
 
 }
 
@@ -814,6 +908,33 @@ main {
     .fa-star {
         font-size: 30px;
     }
+
+    .pawn-g,
+    .pawn-y,
+    .pawn-b,
+    .pawn-r {
+        font-size: 250%;
+    }
+
+    .g1-on,
+    .g2-on,
+    .g3-on,
+    .g4-on,
+    .y1-on,
+    .y2-on,
+    .y3-on,
+    .y4-on,
+    .b1-on,
+    .b2-on,
+    .b3-on,
+    .b4-on,
+    .r1-on,
+    .r2-on,
+    .r3-on,
+    .r4-on {
+        font-size: 220%;
+    }
+
 }
 
 @media (max-width:550px) {
@@ -832,7 +953,85 @@ main {
     }
 
 
+    .g1-on,
+    .g2-on,
+    .g3-on,
+    .g4-on,
+    .y1-on,
+    .y2-on,
+    .y3-on,
+    .y4-on,
+    .b1-on,
+    .b2-on,
+    .b3-on,
+    .b4-on,
+    .r1-on,
+    .r2-on,
+    .r3-on,
+    .r4-on {
+        font-size: 160%;
+    }
+
+
 }
+
+@media (max-width:430px) {
+       /* animation when pawns are released */
+
+@keyframes highlight-animation-on-g {
+    from {
+        font-size: 95%;
+        color: rgb(0, 208, 14);
+    }
+
+    to {
+        font-size: 135%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-y {
+    from {
+        font-size: 95%;
+        color: rgb(221, 206, 35);
+    }
+
+    to {
+        font-size: 135%;
+        color: rgb(201, 159, 23);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-b {
+    from {
+        font-size: 95%;
+        color: rgb(24, 150, 223);
+    }
+
+    to {
+        font-size: 135%;
+        color: rgb(0, 174, 255);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-r {
+    from {
+        font-size: 95%;
+        color: rgb(221, 85, 35);
+    }
+
+    to {
+        font-size: 135%;
+        color: rgb(100, 30, 5);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+    
+}
+
 
 @media (max-width:410px) {
 
@@ -842,61 +1041,34 @@ main {
     .pawn-b-pic {
         font-size: 150%;
     }
+
+    .g1-on,
+    .g2-on,
+    .g3-on,
+    .g4-on,
+    .y1-on,
+    .y2-on,
+    .y3-on,
+    .y4-on,
+    .b1-on,
+    .b2-on,
+    .b3-on,
+    .b4-on,
+    .r1-on,
+    .r2-on,
+    .r3-on,
+    .r4-on {
+        font-size: 90%;
+    }
+
+    .green-arrow,
+    .yellow-arrow,
+    .blue-arrow,
+    .red-arrow {
+        font-size: 100%;
+    }
+
     
-/* animation when pawns are released */
-
-@keyframes highlight-animation-on-g {
-    from {
-        font-size: 100%;
-        color: rgb(0, 208, 14);
-    }
-
-    to {
-        font-size: 130%;
-        color: greenyellow;
-        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
-    }
-}
-
-@keyframes highlight-animation-on-y {
-    from {
-        font-size: 100%;
-        color: rgb(221, 206, 35);
-    }
-
-    to {
-        font-size: 150%;
-        color: rgb(212, 204, 120);
-        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
-    }
-}
-
-@keyframes highlight-animation-on-b {
-    from {
-        font-size: 100%;
-        color: rgb(0, 132, 208);
-    }
-
-    to {
-        font-size: 150%;
-        color: rgb(60, 145, 194);
-        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
-    }
-}
-
-@keyframes highlight-animation-on-r {
-    from {
-        font-size: 100%;
-        color: rgb(221, 85, 35);
-    }
-
-    to {
-        font-size: 150%;
-        color: rgb(210, 142, 117);
-        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
-    }
-}
-
 }
 
 
@@ -906,13 +1078,32 @@ main {
     .pawn-y,
     .pawn-b,
     .pawn-r {
-        font-size: 150%;
+        font-size: 160%;
         bottom: 40%;
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
     }
 
     .fa-star {
         font-size: 80%;
+    }
+
+    .g1-on,
+    .g2-on,
+    .g3-on,
+    .g4-on,
+    .y1-on,
+    .y2-on,
+    .y3-on,
+    .y4-on,
+    .b1-on,
+    .b2-on,
+    .b3-on,
+    .b4-on,
+    .r1-on,
+    .r2-on,
+    .r3-on,
+    .r4-on {
+        font-size: 100%;
     }
 
     @keyframes highlight-animation-g {
@@ -975,6 +1166,62 @@ main {
     }
 
 
+       /* animation when pawns are released */
+
+@keyframes highlight-animation-on-g {
+    from {
+        font-size: 55%;
+        color: rgb(0, 208, 14);
+    }
+
+    to {
+        font-size: 95%;
+        color: greenyellow;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-y {
+    from {
+        font-size: 55%;
+        color: rgb(221, 206, 35);
+    }
+
+    to {
+        font-size: 95%;
+        color: rgb(201, 159, 23);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-b {
+    from {
+        font-size: 55%;
+        color: rgb(24, 150, 223);
+    }
+
+    to {
+        font-size: 95%;
+        color: rgb(0, 174, 255);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+
+@keyframes highlight-animation-on-r {
+    from {
+        font-size: 55%;
+        color: rgb(221, 85, 35);
+    }
+
+    to {
+        font-size: 95%;
+        color: rgb(100, 30, 5);
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+    }
+}
+    
+
+
 }
 
 @media (max-width:245px) {
@@ -983,7 +1230,7 @@ main {
     .pawn-y,
     .pawn-b,
     .pawn-r {
-        font-size: 80%;
+        font-size: 110%;
         bottom: 40%;
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
     }
