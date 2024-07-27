@@ -65,7 +65,7 @@ var token = {
 
 //default state of pawns which is not released from home
 
-var initGreen = false, initYellow = false, initBlue = false, initRed = false;
+var initGreen = 0, initYellow = 0, initBlue = 0, initRed = 0;
 
 
 
@@ -302,6 +302,9 @@ function tokenMove(player, nextPlayer) {
     else {
         pawns = document.querySelectorAll(`.${player}1-on, .${player}2-on, .${player}3-on, .${player}4-on`);
         removeListener(nextPlayer);
+        pawns.forEach((pawn) => {
+            pawn.style.zIndex = "2";
+        });
     }
 
     function handleClick(event) {
@@ -319,9 +322,146 @@ function tokenMove(player, nextPlayer) {
         if (checkState) {
             tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
             let newPosition = savePosition(player, tokenNumber, luckyValue);
-            console.log(newPosition);
+            // console.log(`${tokenNumber} = ${newPosition}`);
+
+
+
+
+
+
+
+            let checkStamp = Array.from(document.querySelector(`.${player}-shell${newPosition}`).classList).find(cls => cls.startsWith('stamp'));
+            if (checkStamp) {
+                console.log('stamp found');
+            } else {
+
+                let shellChilds = document.querySelector(`.${player}-shell${newPosition}`).childNodes;
+                let shellChild;
+                for (shellChild of shellChilds) {
+                    let checkPawnColor = Array.from(shellChild.classList).find(cls => cls.startsWith(`pawn-${player}`));
+                    if (!checkPawnColor) {
+                        shellChild.remove();
+                        let othersPawnColor = Array.from(shellChild.classList).find(cls => cls.startsWith('pawn-'));
+                        if (othersPawnColor == 'pawn-g') {
+                            initGreen--;
+
+                            let parentCircle;
+                            let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('g') && cls.endsWith('-on'));
+                            console.log(currState);
+                            if (currState) {
+                                let resetState = currState.replace("on", "off");
+                                shellChild.classList.remove(currState);
+                                shellChild.classList.add(resetState);
+                                shellChild.style.position = "absolute";
+                                if (currState == 'g1-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-g.circle1");
+                                } else if (currState == 'g2-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-g.circle2");
+                                } else if (currState == 'g3-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-g.circle3");
+                                } else if (currState == 'g4-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-g.circle4");
+                                }
+                                console.dir(parentCircle);
+                                parentCircle.appendChild(shellChild);
+                            }
+                        }
+                        else if (othersPawnColor == 'pawn-y') {
+                            initYellow--;
+
+                            let parentCircle;
+                            let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('y') && cls.endsWith('-on'));
+                            console.log(currState);
+                            if (currState) {
+                                let resetState = currState.replace("on", "off");
+                                shellChild.classList.remove(currState);
+                                shellChild.classList.add(resetState);
+                                shellChild.style.position = "absolute";
+                                if (currState == 'y1-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-y.circle1");
+                                } else if (currState == 'y2-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-y.circle2");
+                                } else if (currState == 'y3-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-y.circle3");
+                                } else if (currState == 'y4-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-y.circle4");
+                                }
+                                console.dir(parentCircle);
+                                parentCircle.appendChild(shellChild);
+                            }
+                        }
+                        else if (othersPawnColor == 'pawn-b') {
+                            initBlue--;
+
+                            let parentCircle;
+                            let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('b') && cls.endsWith('-on'));
+                            console.log(currState);
+                            if (currState) {
+                                let resetState = currState.replace("on", "off");
+                                shellChild.classList.remove(currState);
+                                shellChild.classList.add(resetState);
+                                shellChild.style.position = "absolute";
+                                if (currState == 'b1-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-b.circle1");
+                                } else if (currState == 'b2-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-b.circle2");
+                                } else if (currState == 'b3-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-b.circle3");
+                                } else if (currState == 'b4-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-b.circle4");
+                                }
+                                console.dir(parentCircle);
+                                parentCircle.appendChild(shellChild);
+                            }
+                        }
+                        else if (othersPawnColor == 'pawn-r') {
+                            initRed--;
+
+                            let parentCircle;
+                            let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('r') && cls.endsWith('-on'));
+                            console.log(currState);
+                            if (currState) {
+                                let resetState = currState.replace("on", "off");
+                                shellChild.classList.remove(currState);
+                                shellChild.classList.add(resetState);
+                                shellChild.style.position = "absolute";
+                                if (currState == 'r1-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-r.circle1");
+                                } else if (currState == 'r2-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-r.circle2");
+                                } else if (currState == 'r3-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-r.circle3");
+                                } else if (currState == 'r4-on') {
+                                    parentCircle = document.querySelector(".player-innercircle-r.circle4");
+                                }
+                                console.dir(parentCircle);
+                                parentCircle.appendChild(shellChild);
+                            }
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
             document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
-            shiftDice(nextPlayer);
+            if (luckyValue != 6) {
+                shiftDice(nextPlayer);
+            }
         }
 
         //when pawn is not released
@@ -334,12 +474,25 @@ function tokenMove(player, nextPlayer) {
                 document.querySelector(`.${player}-shell0`).appendChild(clicked);
                 tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
                 savePosition(player, tokenNumber, 0, true);
+                if (player == 'g') {
+                    initGreen++;
+                }
+                else if (player == 'y') {
+                    initYellow++;
+                }
+                else if (player == 'b') {
+                    initBlue++;
+                }
+                else if (player == 'r') {
+                    initRed++;
+                }
             }
         }
 
         pawns.forEach((pawn) => {
             pawn.classList.remove(`pawn-blink-${player}`);
             pawn.removeEventListener("click", handleClick); // Remove event listener
+            pawn.style.zIndex = "1";
         });
     }
 
@@ -352,7 +505,7 @@ function tokenMove(player, nextPlayer) {
 
 function selectForMovement() {
     if (dicePosition == 1) {
-        if (initGreen == true) {
+        if (initGreen > 0) {
             if (luckyValue == 6) {
                 tokenMove('g');
             }
@@ -363,7 +516,7 @@ function selectForMovement() {
         }
         else {
             if (luckyValue == 6) {
-                initGreen = true;
+                // initGreen = 1;
                 tokenMove('g');
             } else {
                 removeListener(2);
@@ -373,7 +526,7 @@ function selectForMovement() {
         }
     }
     else if (dicePosition == 2) {
-        if (initYellow == true) {
+        if (initYellow > 0) {
             if (luckyValue == 6) {
                 tokenMove('y');
             }
@@ -385,7 +538,7 @@ function selectForMovement() {
         }
         else {
             if (luckyValue == 6) {
-                initYellow = true;
+                // initYellow = 1;
                 tokenMove('y');
             } else {
                 removeListener(3);
@@ -397,7 +550,7 @@ function selectForMovement() {
         }
     }
     else if (dicePosition == 3) {
-        if (initBlue == true) {
+        if (initBlue > 0) {
             if (luckyValue == 6) {
                 tokenMove('b');
             } else {
@@ -408,7 +561,7 @@ function selectForMovement() {
         }
         else {
             if (luckyValue == 6) {
-                initBlue = true;
+                // initBlue = 1;
                 tokenMove('b');
             } else {
                 removeListener(4);
@@ -420,7 +573,7 @@ function selectForMovement() {
         }
     }
     else if (dicePosition == 4) {
-        if (initRed == true) {
+        if (initRed > 0) {
             if (luckyValue == 6) {
                 tokenMove('r');
             } else {
@@ -430,7 +583,7 @@ function selectForMovement() {
         }
         else {
             if (luckyValue == 6) {
-                initRed = true;
+                // initRed = 1;
                 tokenMove('r');
             } else {
                 removeListener(1);
@@ -519,4 +672,3 @@ function suffleDice() {
         selectForMovement();
     }
 }
-
