@@ -1,3 +1,3 @@
 # Ludo-Web
-This is a web-based ludo game project
+This is a web-based ludo game project. 
 Motive is my Passion And Practice
