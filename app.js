@@ -4,6 +4,7 @@ var diceContainerNext;
 var dicePosition = 1;
 var tmpDiceElement;
 var luckyValue = 0;
+var newChance = false;
 var token = {
     green: {
         first: {
@@ -96,22 +97,18 @@ function selectPlayer() {
     if (dicePosition == 1) {
         diceContainer = document.querySelector(".md1");
         diceContainerNext = document.querySelector(".md2");
-        // dicePosition++;
     }
     else if (dicePosition == 2) {
         diceContainer = document.querySelector(".md2");
         diceContainerNext = document.querySelector(".md3");
-        // dicePosition++;
     }
     else if (dicePosition == 3) {
         diceContainer = document.querySelector(".md3");
         diceContainerNext = document.querySelector(".md4");
-        // dicePosition++;
     }
     else {
         diceContainer = document.querySelector(".md4");
         diceContainerNext = document.querySelector(".md1");
-        // dicePosition = 1;
     }
 }
 
@@ -148,6 +145,15 @@ function removeListener(playerNo) {
     }
     else {
         document.querySelector(`.md${playerNo - 1}`).removeEventListener('click', suffleDice);
+    }
+}
+
+function addListener(playerNo) {
+    if (playerNo == 1) {
+        document.querySelector(".md4").addEventListener('click', suffleDice);
+    }
+    else {
+        document.querySelector(`.md${playerNo - 1}`).addEventListener('click', suffleDice);
     }
 }
 
@@ -295,12 +301,136 @@ function savePosition(player, tokenNumber, value, replace = false) {
 
 }
 
+function NextPositionValidation(player) {
+
+    let checkCode = [true, true, true, true]
+
+    if (player == 'g') {
+        if (token.green.first.position + luckyValue > 56) {
+            checkCode[0] = false;
+        }
+
+        if (token.green.second.position + luckyValue > 56) {
+            checkCode[1] = false;
+        }
+
+        if (token.green.third.position + luckyValue > 56) {
+            checkCode[2] = false;
+        }
+
+        if (token.green.fourth.position + luckyValue > 56) {
+            checkCode[3] = false;
+        }
+
+
+    } else if (player == 'y') {
+
+        if (token.yellow.first.position + luckyValue > 56) {
+            checkCode[0] = false;
+        }
+
+        if (token.yellow.second.position + luckyValue > 56) {
+            checkCode[1] = false;
+        }
+
+        if (token.yellow.third.position + luckyValue > 56) {
+            checkCode[2] = false;
+        }
+
+        if (token.yellow.fourth.position + luckyValue > 56) {
+            checkCode[3] = false;
+        }
+
+    } else if (player == 'b') {
+
+        if (token.blue.first.position + luckyValue > 56) {
+            checkCode[0] = false;
+        }
+
+        if (token.blue.second.position + luckyValue > 56) {
+            checkCode[1] = false;
+        }
+
+        if (token.blue.third.position + luckyValue > 56) {
+            checkCode[2] = false;
+        }
+
+        if (token.blue.fourth.position + luckyValue > 56) {
+            checkCode[3] = false;
+        }
+
+    } else if (player == 'r') {
+
+        if (token.red.first.position + luckyValue > 56) {
+            checkCode[0] = false;
+        }
+
+        if (token.red.second.position + luckyValue > 56) {
+            checkCode[1] = false;
+        }
+
+        if (token.red.third.position + luckyValue > 56) {
+            checkCode[2] = false;
+        }
+
+        if (token.red.fourth.position + luckyValue > 56) {
+            checkCode[3] = false;
+        }
+
+    }
+
+    return checkCode;
+
+}
+
 function tokenMove(player, nextPlayer) {
+
+    let customArray = [];
     let pawns;
-    if (luckyValue == 6)
-        pawns = document.querySelectorAll(`.pawn-${player}`);
-    else {
-        pawns = document.querySelectorAll(`.${player}1-on, .${player}2-on, .${player}3-on, .${player}4-on`);
+    let validationNo = [];
+    if (luckyValue == 6) {
+        // pawns = document.querySelectorAll(`.pawn-${player}`);
+        validationNo = NextPositionValidation(player);
+        if (validationNo[0]) {
+            customArray.push(...document.querySelectorAll(`.${player}1-on`));
+        }
+        if (validationNo[1]) {
+            customArray.push(...document.querySelectorAll(`.${player}2-on`));
+        }
+        if (validationNo[2]) {
+            customArray.push(...document.querySelectorAll(`.${player}3-on`));
+        }
+        if (validationNo[3]) {
+            customArray.push(...document.querySelectorAll(`.${player}4-on`));
+        }
+
+        let offPlayer = document.querySelectorAll(`.pawn-${player}`);
+
+        // Iterate over each element in the NodeList
+        offPlayer.forEach((element) => {
+            const foundClass = Array.from(element.classList).find((cls) => cls.startsWith(`${player}`) && cls.endsWith('-off'));
+            customArray.push(...document.querySelectorAll(`.${foundClass}`));
+        });
+        
+        pawns = customArray;
+
+    } else {
+        
+        validationNo = NextPositionValidation(player);
+        if (validationNo[0]) {
+            customArray.push(...document.querySelectorAll(`.${player}1-on`));
+        }
+        if (validationNo[1]) {
+            customArray.push(...document.querySelectorAll(`.${player}2-on`));
+        }
+        if (validationNo[2]) {
+            customArray.push(...document.querySelectorAll(`.${player}3-on`));
+        }
+        if (validationNo[3]) {
+            customArray.push(...document.querySelectorAll(`.${player}4-on`));
+        }
+        pawns = customArray;
+        // pawns = document.querySelectorAll(`.${player}1-on, .${player}2-on, .${player}3-on, .${player}4-on`);
         removeListener(nextPlayer);
         pawns.forEach((pawn) => {
             pawn.style.zIndex = "2";
@@ -323,13 +453,13 @@ function tokenMove(player, nextPlayer) {
             tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
             let newPosition = savePosition(player, tokenNumber, luckyValue);
             // console.log(`${tokenNumber} = ${newPosition}`);
+            let currPosition = savePosition(player, tokenNumber, 0);
+            // console.log(currPosition);
 
+            if(currPosition != 56) {
 
-
-
-
-
-
+            
+            //collision handling
             let checkStamp = Array.from(document.querySelector(`.${player}-shell${newPosition}`).classList).find(cls => cls.startsWith('stamp'));
             if (checkStamp) {
                 console.log('stamp found');
@@ -338,8 +468,9 @@ function tokenMove(player, nextPlayer) {
                 let shellChilds = document.querySelector(`.${player}-shell${newPosition}`).childNodes;
                 let shellChild;
                 for (shellChild of shellChilds) {
-                    let checkPawnColor = Array.from(shellChild.classList).find(cls => cls.startsWith(`pawn-${player}`));
-                    if (!checkPawnColor) {
+                    let selfPawn = Array.from(shellChild.classList).find(cls => cls.startsWith(`pawn-${player}`));
+                    let arrow = Array.from(shellChild.classList).find(cls => cls.startsWith('fa-arrow'));
+                    if (!selfPawn && !arrow) {
                         shellChild.remove();
                         let othersPawnColor = Array.from(shellChild.classList).find(cls => cls.startsWith('pawn-'));
                         if (othersPawnColor == 'pawn-g') {
@@ -364,6 +495,7 @@ function tokenMove(player, nextPlayer) {
                                 }
                                 console.dir(parentCircle);
                                 parentCircle.appendChild(shellChild);
+                                newChance = true;
                             }
                         }
                         else if (othersPawnColor == 'pawn-y') {
@@ -388,6 +520,7 @@ function tokenMove(player, nextPlayer) {
                                 }
                                 console.dir(parentCircle);
                                 parentCircle.appendChild(shellChild);
+                                newChance = true;
                             }
                         }
                         else if (othersPawnColor == 'pawn-b') {
@@ -412,6 +545,7 @@ function tokenMove(player, nextPlayer) {
                                 }
                                 console.dir(parentCircle);
                                 parentCircle.appendChild(shellChild);
+                                newChance = true;
                             }
                         }
                         else if (othersPawnColor == 'pawn-r') {
@@ -436,6 +570,7 @@ function tokenMove(player, nextPlayer) {
                                 }
                                 console.dir(parentCircle);
                                 parentCircle.appendChild(shellChild);
+                                newChance = true;
                             }
                         }
 
@@ -448,21 +583,26 @@ function tokenMove(player, nextPlayer) {
 
 
 
-
-
-
-
-
-
-
-
-
-
             document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
-            if (luckyValue != 6) {
-                shiftDice(nextPlayer);
-            }
+
         }
+            if (luckyValue != 6) {
+                if (newChance) {
+                    addListener(nextPlayer);
+                    newChance = false;
+                } else {
+                    shiftDice(nextPlayer);
+                }
+            } else {
+                if(newChance) {
+                    newChance = false;
+                }
+            }
+
+
+        }
+
+
 
         //when pawn is not released
         if (luckyValue == 6) {
@@ -488,6 +628,8 @@ function tokenMove(player, nextPlayer) {
                 }
             }
         }
+
+        
 
         pawns.forEach((pawn) => {
             pawn.classList.remove(`pawn-blink-${player}`);
