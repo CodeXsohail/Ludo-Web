@@ -562,6 +562,8 @@ function tokenMove(player, nextPlayer) {
                 collisionHandle(player, newPosition);
                 document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
 
+            } else {
+                newChance = true;
             }
             if (luckyValue != 6) {
                 if (newChance) {
