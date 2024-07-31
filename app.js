@@ -380,10 +380,6 @@ function NextPositionValidation(player) {
 
     }
 
-
-
-
-
     if (checkCode[0]) {
         customArray.push(...document.querySelectorAll(`.${player}1-on`));
     }
@@ -406,111 +402,118 @@ function NextPositionValidation(player) {
 }
 
 function collisionHandle(player, newPosition) {
+    let selfPawn;
+    let arrow;
+    let shellChilds;
+    let othersPawnColor;
     let checkStamp = Array.from(document.querySelector(`.${player}-shell${newPosition}`).classList).find(cls => cls.startsWith('stamp'));
     if (!checkStamp) {
-        let shellChilds = document.querySelector(`.${player}-shell${newPosition}`).childNodes;
-        let shellChild;
-        for (shellChild of shellChilds) {
-            let selfPawn = Array.from(shellChild.classList).find(cls => cls.startsWith(`pawn-${player}`));
-            let arrow = Array.from(shellChild.classList).find(cls => cls.startsWith('fa-arrow'));
-            if (!selfPawn && !arrow) {
-                shellChild.remove();
-                let othersPawnColor = Array.from(shellChild.classList).find(cls => cls.startsWith('pawn-'));
-                if (othersPawnColor == 'pawn-g') {
-                    initGreen--;
+        shellChilds = document.querySelector(`.${player}-shell${newPosition}`).childNodes;
 
-                    let parentCircle;
-                    let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('g') && cls.endsWith('-on'));
-                    if (currState) {
-                        let resetState = currState.replace("on", "off");
-                        shellChild.classList.remove(currState);
-                        shellChild.classList.add(resetState);
-                        shellChild.style.position = "absolute";
-                        if (currState == 'g1-on') {
-                            parentCircle = document.querySelector(".player-innercircle-g.circle1");
-                        } else if (currState == 'g2-on') {
-                            parentCircle = document.querySelector(".player-innercircle-g.circle2");
-                        } else if (currState == 'g3-on') {
-                            parentCircle = document.querySelector(".player-innercircle-g.circle3");
-                        } else if (currState == 'g4-on') {
-                            parentCircle = document.querySelector(".player-innercircle-g.circle4");
+        for (let i = 1; i < 5; i++) {
+            shellChilds.forEach(shellChild => {
+                selfPawn = Array.from(shellChild.classList).find(cls => cls.startsWith(`pawn-${player}`));
+                arrow = Array.from(shellChild.classList).find(cls => cls.startsWith('fa-arrow'));
+                if (!selfPawn && !arrow) {
+                    shellChild.remove();
+                    othersPawnColor = Array.from(shellChild.classList).find(cls => cls.startsWith('pawn-'));
+                    if (othersPawnColor == 'pawn-g') {
+                        initGreen--;
+
+                        let parentCircle;
+                        let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('g') && cls.endsWith('-on'));
+                        if (currState) {
+                            let resetState = currState.replace("on", "off");
+                            shellChild.classList.remove(currState);
+                            shellChild.classList.add(resetState);
+                            shellChild.style.position = "absolute";
+                            if (currState == 'g1-on') {
+                                parentCircle = document.querySelector(".player-innercircle-g.circle1");
+                            } else if (currState == 'g2-on') {
+                                parentCircle = document.querySelector(".player-innercircle-g.circle2");
+                            } else if (currState == 'g3-on') {
+                                parentCircle = document.querySelector(".player-innercircle-g.circle3");
+                            } else if (currState == 'g4-on') {
+                                parentCircle = document.querySelector(".player-innercircle-g.circle4");
+                            }
+                            parentCircle.appendChild(shellChild);
+                            newChance = true;
                         }
-                        parentCircle.appendChild(shellChild);
-                        newChance = true;
                     }
-                }
-                else if (othersPawnColor == 'pawn-y') {
-                    initYellow--;
+                    else if (othersPawnColor == 'pawn-y') {
+                        initYellow--;
 
-                    let parentCircle;
-                    let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('y') && cls.endsWith('-on'));
-                    if (currState) {
-                        let resetState = currState.replace("on", "off");
-                        shellChild.classList.remove(currState);
-                        shellChild.classList.add(resetState);
-                        shellChild.style.position = "absolute";
-                        if (currState == 'y1-on') {
-                            parentCircle = document.querySelector(".player-innercircle-y.circle1");
-                        } else if (currState == 'y2-on') {
-                            parentCircle = document.querySelector(".player-innercircle-y.circle2");
-                        } else if (currState == 'y3-on') {
-                            parentCircle = document.querySelector(".player-innercircle-y.circle3");
-                        } else if (currState == 'y4-on') {
-                            parentCircle = document.querySelector(".player-innercircle-y.circle4");
+                        let parentCircle;
+                        let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('y') && cls.endsWith('-on'));
+                        if (currState) {
+                            let resetState = currState.replace("on", "off");
+                            shellChild.classList.remove(currState);
+                            shellChild.classList.add(resetState);
+                            shellChild.style.position = "absolute";
+                            if (currState == 'y1-on') {
+                                parentCircle = document.querySelector(".player-innercircle-y.circle1");
+                            } else if (currState == 'y2-on') {
+                                parentCircle = document.querySelector(".player-innercircle-y.circle2");
+                            } else if (currState == 'y3-on') {
+                                parentCircle = document.querySelector(".player-innercircle-y.circle3");
+                            } else if (currState == 'y4-on') {
+                                parentCircle = document.querySelector(".player-innercircle-y.circle4");
+                            }
+                            parentCircle.appendChild(shellChild);
+                            newChance = true;
                         }
-                        parentCircle.appendChild(shellChild);
-                        newChance = true;
                     }
-                }
-                else if (othersPawnColor == 'pawn-b') {
-                    initBlue--;
+                    else if (othersPawnColor == 'pawn-b') {
+                        initBlue--;
 
-                    let parentCircle;
-                    let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('b') && cls.endsWith('-on'));
-                    if (currState) {
-                        let resetState = currState.replace("on", "off");
-                        shellChild.classList.remove(currState);
-                        shellChild.classList.add(resetState);
-                        shellChild.style.position = "absolute";
-                        if (currState == 'b1-on') {
-                            parentCircle = document.querySelector(".player-innercircle-b.circle1");
-                        } else if (currState == 'b2-on') {
-                            parentCircle = document.querySelector(".player-innercircle-b.circle2");
-                        } else if (currState == 'b3-on') {
-                            parentCircle = document.querySelector(".player-innercircle-b.circle3");
-                        } else if (currState == 'b4-on') {
-                            parentCircle = document.querySelector(".player-innercircle-b.circle4");
+                        let parentCircle;
+                        let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('b') && cls.endsWith('-on'));
+                        if (currState) {
+                            let resetState = currState.replace("on", "off");
+                            shellChild.classList.remove(currState);
+                            shellChild.classList.add(resetState);
+                            shellChild.style.position = "absolute";
+                            if (currState == 'b1-on') {
+                                parentCircle = document.querySelector(".player-innercircle-b.circle1");
+                            } else if (currState == 'b2-on') {
+                                parentCircle = document.querySelector(".player-innercircle-b.circle2");
+                            } else if (currState == 'b3-on') {
+                                parentCircle = document.querySelector(".player-innercircle-b.circle3");
+                            } else if (currState == 'b4-on') {
+                                parentCircle = document.querySelector(".player-innercircle-b.circle4");
+                            }
+                            parentCircle.appendChild(shellChild);
+                            newChance = true;
                         }
-                        parentCircle.appendChild(shellChild);
-                        newChance = true;
                     }
-                }
-                else if (othersPawnColor == 'pawn-r') {
-                    initRed--;
+                    else if (othersPawnColor == 'pawn-r') {
+                        initRed--;
 
-                    let parentCircle;
-                    let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('r') && cls.endsWith('-on'));
-                    if (currState) {
-                        let resetState = currState.replace("on", "off");
-                        shellChild.classList.remove(currState);
-                        shellChild.classList.add(resetState);
-                        shellChild.style.position = "absolute";
-                        if (currState == 'r1-on') {
-                            parentCircle = document.querySelector(".player-innercircle-r.circle1");
-                        } else if (currState == 'r2-on') {
-                            parentCircle = document.querySelector(".player-innercircle-r.circle2");
-                        } else if (currState == 'r3-on') {
-                            parentCircle = document.querySelector(".player-innercircle-r.circle3");
-                        } else if (currState == 'r4-on') {
-                            parentCircle = document.querySelector(".player-innercircle-r.circle4");
+                        let parentCircle;
+                        let currState = Array.from(shellChild.classList).find(cls => cls.startsWith('r') && cls.endsWith('-on'));
+                        if (currState) {
+                            let resetState = currState.replace("on", "off");
+                            shellChild.classList.remove(currState);
+                            shellChild.classList.add(resetState);
+                            shellChild.style.position = "absolute";
+                            if (currState == 'r1-on') {
+                                parentCircle = document.querySelector(".player-innercircle-r.circle1");
+                            } else if (currState == 'r2-on') {
+                                parentCircle = document.querySelector(".player-innercircle-r.circle2");
+                            } else if (currState == 'r3-on') {
+                                parentCircle = document.querySelector(".player-innercircle-r.circle3");
+                            } else if (currState == 'r4-on') {
+                                parentCircle = document.querySelector(".player-innercircle-r.circle4");
+                            }
+                            parentCircle.appendChild(shellChild);
+                            newChance = true;
                         }
-                        parentCircle.appendChild(shellChild);
-                        newChance = true;
                     }
+
+
                 }
 
-
-            }
+            });
 
         }
 
@@ -533,12 +536,13 @@ function tokenMove(player, nextPlayer) {
         });
         pawns = tokenArray;
         removeListener(nextPlayer);
+        
     } else {
         removeListener(nextPlayer);
-        pawns.forEach((pawn) => {
-            pawn.style.zIndex = "2";
-        });
     }
+    pawns.forEach((pawn) => {
+        pawn.style.zIndex = "2";
+    });
 
     function handleClick(event) {
         const clicked = event.target;
