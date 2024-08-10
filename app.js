@@ -9,58 +9,74 @@ var checkCode = [];
 var token = {
     green: {
         first: {
-            position: -2
+            position: -2,
+            finished: false
         },
         second: {
-            position: -2
+            position: -2,
+            finished: false
         },
         third: {
-            position: -2
+            position: -2,
+            finished: false
         },
         fourth: {
-            position: -2
+            position: -2,
+            finished: false
         }
     },
     yellow: {
         first: {
-            position: -2
+            position: -2,
+            finished: false
         },
         second: {
-            position: -2
+            position: -2,
+            finished: false
         },
         third: {
-            position: -2
+            position: -2,
+            finished: false
         },
         fourth: {
-            position: -2
+            position: -2,
+            finished: false
         }
     },
     blue: {
         first: {
-            position: -2
+            position: -2,
+            finished: false
         },
         second: {
-            position: -2
+            position: -2,
+            finished: false
         },
         third: {
-            position: -2
+            position: -2,
+            finished: false
         },
         fourth: {
-            position: -2
+            position: -2,
+            finished: false
         }
     },
     red: {
         first: {
-            position: -2
+            position: -2,
+            finished: false
         },
         second: {
-            position: -2
+            position: -2,
+            finished: false
         },
         third: {
-            position: -2
+            position: -2,
+            finished: false
         },
         fourth: {
-            position: -2
+            position: -2,
+            finished: false
         }
     }
 };
@@ -241,7 +257,10 @@ function selectPlayer() {
 
 function selectForMovement() {
     if (dicePosition == 1) {
-        if (initGreen > 0) {
+        if (isAllFinished('g')) {
+            removeListener(2);
+                shiftDice(2);
+        } else if (initGreen > 0) {
             if (luckyValue == 6) {
                 tokenMove('g', 2);
             }
@@ -262,7 +281,10 @@ function selectForMovement() {
         }
     }
     else if (dicePosition == 2) {
-        if (initYellow > 0) {
+        if (isAllFinished('y')) {
+            removeListener(3);
+                shiftDice(3);
+        } else if (initYellow > 0) {
             if (luckyValue == 6) {
                 tokenMove('y', 3);
             }
@@ -286,7 +308,10 @@ function selectForMovement() {
         }
     }
     else if (dicePosition == 3) {
-        if (initBlue > 0) {
+        if (isAllFinished('b')) {
+            removeListener(4);
+                shiftDice(4);
+        } else if (initBlue > 0) {
             if (luckyValue == 6) {
                 tokenMove('b', 4);
             } else {
@@ -309,7 +334,10 @@ function selectForMovement() {
         }
     }
     else if (dicePosition == 4) {
-        if (initRed > 0) {
+        if (isAllFinished('r')) {
+            removeListener(1);
+                shiftDice(1);
+        } else if (initRed > 0) {
             if (luckyValue == 6) {
                 tokenMove('r', 1);
             } else {
@@ -354,7 +382,7 @@ function tokenMove(player, nextPlayer) {
         let shiftDiceFlag = false;
         for (let i = 0; i < 4; i++) {
             if (boolCheckArray[i] == false) {
-               shiftDiceFlag = true;
+                shiftDiceFlag = true;
             }
         }
         if (shiftDiceFlag == true) {
@@ -386,15 +414,14 @@ function tokenMove(player, nextPlayer) {
 
                 collisionHandle(player, newPosition);
                 document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
-                if (newPosition == 56) {
-                    console.dir(clicked);
-                    //complete round
-                }
 
             } else {
                 newChance = true;
+                updateFinishStatus(player, tokenNumber);
+                if (isAllFinished(player))
+                    shiftDice(nextPlayer);
             }
-            if (luckyValue != 6) {
+            if (luckyValue != 6 && !isAllFinished(player)) {
                 if (newChance) {
                     addListener(nextPlayer);
                     newChance = false;
@@ -411,7 +438,7 @@ function tokenMove(player, nextPlayer) {
         }
 
         //when token is not released
-        if (luckyValue == 6) {
+        if (luckyValue == 6 && !isAllFinished(player)) {
             offState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-off'));
             if (offState) {
                 onState = offState.replace("off", "on");
@@ -593,10 +620,94 @@ function savePosition(player, tokenNumber, value, replace = false) {
 
 }
 
+
+function updateFinishStatus(player, tokenNumber) {
+    if (player == 'g') {
+        if (tokenNumber == "token-g1") {
+            token.green.first.finished = true;
+        }
+        else if (tokenNumber == "token-g2") {
+            token.green.second.finished = true;
+        }
+        else if (tokenNumber == "token-g3") {
+            token.green.third.finished = true;
+        }
+        else if (tokenNumber == "token-g4") {
+            token.green.fourth.finished = true;
+        }
+    }
+
+    if (player == 'y') {
+        if (tokenNumber == "token-y1") {
+            token.yellow.first.finished = true;
+        }
+        else if (tokenNumber == "token-y2") {
+            token.yellow.second.finished = true;
+        }
+        else if (tokenNumber == "token-y3") {
+            token.yellow.third.finished = true;
+        }
+        else if (tokenNumber == "token-y4") {
+            token.yellow.fourth.finished = true;
+        }
+    }
+
+    if (player == 'b') {
+        if (tokenNumber == "token-b1") {
+            token.blue.first.finished = true;
+        }
+        else if (tokenNumber == "token-b2") {
+            token.blue.second.finished = true;
+        }
+        else if (tokenNumber == "token-b3") {
+            token.blue.third.finished = true;
+        }
+        else if (tokenNumber == "token-b4") {
+            token.blue.fourth.finished = true;
+        }
+    }
+
+    if (player == 'r') {
+        if (tokenNumber == "token-r1") {
+            token.red.first.finished = true;
+        }
+        else if (tokenNumber == "token-r2") {
+            token.red.second.finished = true;
+        }
+        else if (tokenNumber == "token-r3") {
+            token.red.third.finished = true;
+        }
+        else if (tokenNumber == "token-r4") {
+            token.red.fourth.finished = true;
+        }
+    }
+}
+
+function isAllFinished(player) {
+    if (player == 'g') {
+        if (token.green.first.finished == true && token.green.second.finished == true && token.green.third.finished == true && token.green.fourth.finished == true)
+            return true;
+    } else if (player == 'y') {
+        if (token.yellow.first.finished == true && token.yellow.second.finished == true && token.yellow.third.finished == true && token.yellow.fourth.finished == true)
+            return true;
+    }
+    else if (player == 'b') {
+        if (token.blue.first.finished == true && token.blue.second.finished == true && token.blue.third.finished == true && token.blue.fourth.finished == true)
+            return true;
+    }
+    else if (player == 'r') {
+        if (token.red.first.finished == true && token.red.second.finished == true && token.red.third.finished == true && token.red.fourth.finished == true)
+            return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function NextPositionValidation(player) {
 
     let customArray = [];
-    
+
     if (player == 'g') {
         if (token.green.first.position + luckyValue > 56) {
             checkCode[0] = false;
