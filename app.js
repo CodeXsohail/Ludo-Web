@@ -5,6 +5,7 @@ var dicePosition = 1;
 var tmpDiceElement;
 var luckyValue = 0;
 var newChance = false;
+var checkCode = [];
 var token = {
     green: {
         first: {
@@ -92,25 +93,6 @@ mobileSize();
 
 //game functionalities
 
-function selectPlayer() {
-
-    if (dicePosition == 1) {
-        diceContainer = document.querySelector(".md1");
-        diceContainerNext = document.querySelector(".md2");
-    }
-    else if (dicePosition == 2) {
-        diceContainer = document.querySelector(".md2");
-        diceContainerNext = document.querySelector(".md3");
-    }
-    else if (dicePosition == 3) {
-        diceContainer = document.querySelector(".md3");
-        diceContainerNext = document.querySelector(".md4");
-    }
-    else {
-        diceContainer = document.querySelector(".md4");
-        diceContainerNext = document.querySelector(".md1");
-    }
-}
 
 function shiftDice(playerNo) {
     if (playerNo == 1) {
@@ -157,7 +139,317 @@ function addListener(playerNo) {
     }
 }
 
-document.querySelector('.md1').addEventListener('click', suffleDice);
+document.querySelector('.md1').addEventListener('click', suffleDice);  //functionalities execution starts here
+
+function suffleDice() {
+    let res = Math.floor(Math.random() * 6 + 1);
+    selectPlayer();
+    diceContainer.childNodes[0].remove();
+    if (res == 1) {
+        tmpDiceElement = document.createElement("i");
+        tmpDiceElement.classList.add("fa-solid");
+        tmpDiceElement.classList.add("fa-dice-one");
+        tmpDiceElement.classList.add("dice-displace");
+        diceContainer.appendChild(tmpDiceElement);
+        setTimeout(() => {
+            tmpDiceElement.style.top = "0px";
+        }, 200);
+        luckyValue = 1;
+        selectForMovement();
+    }
+    else if (res == 2) {
+        tmpDiceElement = document.createElement("i");
+        tmpDiceElement.classList.add("fa-solid");
+        tmpDiceElement.classList.add("fa-dice-two");
+        tmpDiceElement.classList.add("dice-displace");
+        diceContainer.appendChild(tmpDiceElement);
+        setTimeout(() => {
+            tmpDiceElement.style.top = "0px";
+        }, 200);
+        luckyValue = 2;
+        selectForMovement();
+    }
+    else if (res == 3) {
+        tmpDiceElement = document.createElement("i");
+        tmpDiceElement.classList.add("fa-solid");
+        tmpDiceElement.classList.add("fa-dice-three");
+        tmpDiceElement.classList.add("dice-displace");
+        diceContainer.appendChild(tmpDiceElement);
+        setTimeout(() => {
+            tmpDiceElement.style.top = "0px";
+        }, 200);
+        luckyValue = 3;
+        selectForMovement();
+    }
+    else if (res == 4) {
+        tmpDiceElement = document.createElement("i");
+        tmpDiceElement.classList.add("fa-solid");
+        tmpDiceElement.classList.add("fa-dice-four");
+        tmpDiceElement.classList.add("dice-displace");
+        diceContainer.appendChild(tmpDiceElement);
+        setTimeout(() => {
+            tmpDiceElement.style.top = "0px";
+        }, 200);
+        luckyValue = 4;
+        selectForMovement();
+    }
+    else if (res == 5) {
+        tmpDiceElement = document.createElement("i");
+        tmpDiceElement.classList.add("fa-solid");
+        tmpDiceElement.classList.add("fa-dice-five");
+        tmpDiceElement.classList.add("dice-displace");
+        diceContainer.appendChild(tmpDiceElement);
+        setTimeout(() => {
+            tmpDiceElement.style.top = "0px";
+        }, 200);
+        luckyValue = 5;
+        selectForMovement(res);
+    }
+    else {
+        tmpDiceElement = document.createElement("i");
+        tmpDiceElement.classList.add("fa-solid");
+        tmpDiceElement.classList.add("fa-dice-six");
+        tmpDiceElement.classList.add("dice-displace");
+        diceContainer.appendChild(tmpDiceElement);
+        setTimeout(() => {
+            tmpDiceElement.style.top = "0px";
+        }, 200);
+        luckyValue = 6;
+        selectForMovement();
+    }
+}
+
+function selectPlayer() {
+
+    if (dicePosition == 1) {
+        diceContainer = document.querySelector(".md1");
+        diceContainerNext = document.querySelector(".md2");
+    }
+    else if (dicePosition == 2) {
+        diceContainer = document.querySelector(".md2");
+        diceContainerNext = document.querySelector(".md3");
+    }
+    else if (dicePosition == 3) {
+        diceContainer = document.querySelector(".md3");
+        diceContainerNext = document.querySelector(".md4");
+    }
+    else {
+        diceContainer = document.querySelector(".md4");
+        diceContainerNext = document.querySelector(".md1");
+    }
+}
+
+function selectForMovement() {
+    if (dicePosition == 1) {
+        if (initGreen > 0) {
+            if (luckyValue == 6) {
+                tokenMove('g', 2);
+            }
+            else {
+                tokenMove('g', 2);
+            }
+
+        }
+        else {
+            if (luckyValue == 6) {
+                // initGreen = 1;
+                tokenMove('g', 2);
+            } else {
+                removeListener(2);
+                shiftDice(2);
+
+            }
+        }
+    }
+    else if (dicePosition == 2) {
+        if (initYellow > 0) {
+            if (luckyValue == 6) {
+                tokenMove('y', 3);
+            }
+            else {
+                tokenMove('y', 3);
+            }
+
+
+        }
+        else {
+            if (luckyValue == 6) {
+                // initYellow = 1;
+                tokenMove('y', 3);
+            } else {
+                removeListener(3);
+                shiftDice(3);
+
+            }
+
+
+        }
+    }
+    else if (dicePosition == 3) {
+        if (initBlue > 0) {
+            if (luckyValue == 6) {
+                tokenMove('b', 4);
+            } else {
+                tokenMove('b', 4);
+            }
+
+
+        }
+        else {
+            if (luckyValue == 6) {
+                // initBlue = 1;
+                tokenMove('b', 4);
+            } else {
+                removeListener(4);
+                shiftDice(4);
+
+            }
+
+
+        }
+    }
+    else if (dicePosition == 4) {
+        if (initRed > 0) {
+            if (luckyValue == 6) {
+                tokenMove('r', 1);
+            } else {
+                tokenMove('r', 1);
+            }
+
+        }
+        else {
+            if (luckyValue == 6) {
+                // initRed = 1;
+                tokenMove('r', 1);
+            } else {
+                removeListener(1);
+                shiftDice(1);
+            }
+
+
+        }
+    }
+}
+
+function tokenMove(player, nextPlayer) {
+    let tokenArray = [];
+    let pawns;
+    checkCode = [true, true, true, true];
+    tokenArray = NextPositionValidation(player);
+    pawns = tokenArray;
+
+    if (luckyValue == 6) {
+        let offPlayer = document.querySelectorAll(`.pawn-${player}`);
+        // Iterate over each element in the NodeList
+        offPlayer.forEach((element) => {
+            const foundClass = Array.from(element.classList).find((cls) => cls.startsWith(`${player}`) && cls.endsWith('-off'));
+            tokenArray.push(...document.querySelectorAll(`.${foundClass}`));
+        });
+        pawns = tokenArray;
+        removeListener(nextPlayer);
+
+    } else {
+        removeListener(nextPlayer);
+        let boolCheckArray = NextPositionValidation("boolCheck");
+        let shiftDiceFlag = false;
+        for (let i = 0; i < 4; i++) {
+            if (boolCheckArray[i] == false) {
+               shiftDiceFlag = true;
+            }
+        }
+        if (shiftDiceFlag == true) {
+            shiftDice(nextPlayer);
+        }
+    }
+    pawns.forEach((pawn) => {
+        pawn.style.zIndex = "2";
+    });
+
+    function handleClick(event) {
+        const clicked = event.target;
+        let onState;
+        let offState;
+        let checkState;
+        let tokenNumber;
+
+        clicked.style.position = "relative";
+        clicked.remove();
+
+        //when token is released
+        checkState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-on'));
+        if (checkState) {
+            tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
+            let newPosition = savePosition(player, tokenNumber, luckyValue);
+            let currPosition = savePosition(player, tokenNumber, 0);
+
+            if (currPosition != 56) {
+
+                collisionHandle(player, newPosition);
+                document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
+                if (newPosition == 56) {
+                    console.dir(clicked);
+                    //complete round
+                }
+
+            } else {
+                newChance = true;
+            }
+            if (luckyValue != 6) {
+                if (newChance) {
+                    addListener(nextPlayer);
+                    newChance = false;
+                } else {
+                    shiftDice(nextPlayer);
+                }
+            } else {
+                if (newChance) {
+                    newChance = false;
+                }
+            }
+
+
+        }
+
+        //when token is not released
+        if (luckyValue == 6) {
+            offState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-off'));
+            if (offState) {
+                onState = offState.replace("off", "on");
+                clicked.classList.remove(offState);
+                clicked.classList.add(onState);
+                document.querySelector(`.${player}-shell0`).appendChild(clicked);
+                tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
+                savePosition(player, tokenNumber, 0, true);
+                if (player == 'g') {
+                    initGreen++;
+                }
+                else if (player == 'y') {
+                    initYellow++;
+                }
+                else if (player == 'b') {
+                    initBlue++;
+                }
+                else if (player == 'r') {
+                    initRed++;
+                }
+            }
+            addListener(nextPlayer);
+        }
+
+
+        pawns.forEach((pawn) => {
+            pawn.classList.remove(`pawn-blink-${player}`);
+            pawn.removeEventListener("click", handleClick); // Remove event listener
+            pawn.style.zIndex = "1";
+        });
+    }
+
+    pawns.forEach((pawn) => {
+        pawn.classList.add(`pawn-blink-${player}`);
+        pawn.addEventListener("click", handleClick);
+    });
+
+}
 
 function savePosition(player, tokenNumber, value, replace = false) {
     if (replace == true) {
@@ -304,8 +596,7 @@ function savePosition(player, tokenNumber, value, replace = false) {
 function NextPositionValidation(player) {
 
     let customArray = [];
-    let checkCode = [true, true, true, true]
-
+    
     if (player == 'g') {
         if (token.green.first.position + luckyValue > 56) {
             checkCode[0] = false;
@@ -393,12 +684,10 @@ function NextPositionValidation(player) {
         customArray.push(...document.querySelectorAll(`.${player}4-on`));
     }
 
+    if (player == "boolCheck")
+        return checkCode;
 
     return customArray;
-
-
-
-
 }
 
 function collisionHandle(player, newPosition) {
@@ -519,279 +808,4 @@ function collisionHandle(player, newPosition) {
 
     }
 
-}
-
-function tokenMove(player, nextPlayer) {
-    let tokenArray = [];
-    let pawns;
-    tokenArray = NextPositionValidation(player);
-    pawns = tokenArray;
-
-    if (luckyValue == 6) {
-        let offPlayer = document.querySelectorAll(`.pawn-${player}`);
-        // Iterate over each element in the NodeList
-        offPlayer.forEach((element) => {
-            const foundClass = Array.from(element.classList).find((cls) => cls.startsWith(`${player}`) && cls.endsWith('-off'));
-            tokenArray.push(...document.querySelectorAll(`.${foundClass}`));
-        });
-        pawns = tokenArray;
-        removeListener(nextPlayer);
-        
-    } else {
-        removeListener(nextPlayer);
-    }
-    pawns.forEach((pawn) => {
-        pawn.style.zIndex = "2";
-    });
-
-    function handleClick(event) {
-        const clicked = event.target;
-        let onState;
-        let offState;
-        let checkState;
-        let tokenNumber;
-
-        clicked.style.position = "relative";
-        clicked.remove();
-
-        //when token is released
-        checkState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-on'));
-        if (checkState) {
-            tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
-            let newPosition = savePosition(player, tokenNumber, luckyValue);
-            let currPosition = savePosition(player, tokenNumber, 0);
-
-            if (currPosition != 56) {
-
-                collisionHandle(player, newPosition);
-                document.querySelector(`.${player}-shell${newPosition}`).appendChild(clicked);
-
-            } else {
-                newChance = true;
-            }
-            if (luckyValue != 6) {
-                if (newChance) {
-                    addListener(nextPlayer);
-                    newChance = false;
-                } else {
-                    shiftDice(nextPlayer);
-                }
-            } else {
-                if (newChance) {
-                    newChance = false;
-                }
-            }
-
-
-        }
-
-        //when token is not released
-        if (luckyValue == 6) {
-            offState = Array.from(clicked.classList).find(cls => cls.startsWith(`${player}`) && cls.endsWith('-off'));
-            if (offState) {
-                onState = offState.replace("off", "on");
-                clicked.classList.remove(offState);
-                clicked.classList.add(onState);
-                document.querySelector(`.${player}-shell0`).appendChild(clicked);
-                tokenNumber = Array.from(clicked.classList).find(cls => cls.startsWith(`token-${player}`));
-                savePosition(player, tokenNumber, 0, true);
-                if (player == 'g') {
-                    initGreen++;
-                }
-                else if (player == 'y') {
-                    initYellow++;
-                }
-                else if (player == 'b') {
-                    initBlue++;
-                }
-                else if (player == 'r') {
-                    initRed++;
-                }
-            }
-            addListener(nextPlayer);
-        }
-
-
-        pawns.forEach((pawn) => {
-            pawn.classList.remove(`pawn-blink-${player}`);
-            pawn.removeEventListener("click", handleClick); // Remove event listener
-            pawn.style.zIndex = "1";
-        });
-    }
-
-    pawns.forEach((pawn) => {
-        pawn.classList.add(`pawn-blink-${player}`);
-        pawn.addEventListener("click", handleClick);
-    });
-
-}
-
-function selectForMovement() {
-    if (dicePosition == 1) {
-        if (initGreen > 0) {
-            if (luckyValue == 6) {
-                tokenMove('g', 2);
-            }
-            else {
-                tokenMove('g', 2);
-            }
-
-        }
-        else {
-            if (luckyValue == 6) {
-                // initGreen = 1;
-                tokenMove('g', 2);
-            } else {
-                removeListener(2);
-                shiftDice(2);
-
-            }
-        }
-    }
-    else if (dicePosition == 2) {
-        if (initYellow > 0) {
-            if (luckyValue == 6) {
-                tokenMove('y', 3);
-            }
-            else {
-                tokenMove('y', 3);
-            }
-
-
-        }
-        else {
-            if (luckyValue == 6) {
-                // initYellow = 1;
-                tokenMove('y', 3);
-            } else {
-                removeListener(3);
-                shiftDice(3);
-
-            }
-
-
-        }
-    }
-    else if (dicePosition == 3) {
-        if (initBlue > 0) {
-            if (luckyValue == 6) {
-                tokenMove('b', 4);
-            } else {
-                tokenMove('b', 4);
-            }
-
-
-        }
-        else {
-            if (luckyValue == 6) {
-                // initBlue = 1;
-                tokenMove('b', 4);
-            } else {
-                removeListener(4);
-                shiftDice(4);
-
-            }
-
-
-        }
-    }
-    else if (dicePosition == 4) {
-        if (initRed > 0) {
-            if (luckyValue == 6) {
-                tokenMove('r', 1);
-            } else {
-                tokenMove('r', 1);
-            }
-
-        }
-        else {
-            if (luckyValue == 6) {
-                // initRed = 1;
-                tokenMove('r', 1);
-            } else {
-                removeListener(1);
-                shiftDice(1);
-            }
-
-
-        }
-    }
-}
-
-function suffleDice() {
-    let res = Math.floor(Math.random() * 6 + 1);
-    selectPlayer();
-    diceContainer.childNodes[0].remove();
-    if (res == 1) {
-        tmpDiceElement = document.createElement("i");
-        tmpDiceElement.classList.add("fa-solid");
-        tmpDiceElement.classList.add("fa-dice-one");
-        tmpDiceElement.classList.add("dice-displace");
-        diceContainer.appendChild(tmpDiceElement);
-        setTimeout(() => {
-            tmpDiceElement.style.top = "0px";
-        }, 200);
-        luckyValue = 1;
-        selectForMovement();
-    }
-    else if (res == 2) {
-        tmpDiceElement = document.createElement("i");
-        tmpDiceElement.classList.add("fa-solid");
-        tmpDiceElement.classList.add("fa-dice-two");
-        tmpDiceElement.classList.add("dice-displace");
-        diceContainer.appendChild(tmpDiceElement);
-        setTimeout(() => {
-            tmpDiceElement.style.top = "0px";
-        }, 200);
-        luckyValue = 2;
-        selectForMovement();
-    }
-    else if (res == 3) {
-        tmpDiceElement = document.createElement("i");
-        tmpDiceElement.classList.add("fa-solid");
-        tmpDiceElement.classList.add("fa-dice-three");
-        tmpDiceElement.classList.add("dice-displace");
-        diceContainer.appendChild(tmpDiceElement);
-        setTimeout(() => {
-            tmpDiceElement.style.top = "0px";
-        }, 200);
-        luckyValue = 3;
-        selectForMovement();
-    }
-    else if (res == 4) {
-        tmpDiceElement = document.createElement("i");
-        tmpDiceElement.classList.add("fa-solid");
-        tmpDiceElement.classList.add("fa-dice-four");
-        tmpDiceElement.classList.add("dice-displace");
-        diceContainer.appendChild(tmpDiceElement);
-        setTimeout(() => {
-            tmpDiceElement.style.top = "0px";
-        }, 200);
-        luckyValue = 4;
-        selectForMovement();
-    }
-    else if (res == 5) {
-        tmpDiceElement = document.createElement("i");
-        tmpDiceElement.classList.add("fa-solid");
-        tmpDiceElement.classList.add("fa-dice-five");
-        tmpDiceElement.classList.add("dice-displace");
-        diceContainer.appendChild(tmpDiceElement);
-        setTimeout(() => {
-            tmpDiceElement.style.top = "0px";
-        }, 200);
-        luckyValue = 5;
-        selectForMovement(res);
-    }
-    else {
-        tmpDiceElement = document.createElement("i");
-        tmpDiceElement.classList.add("fa-solid");
-        tmpDiceElement.classList.add("fa-dice-six");
-        tmpDiceElement.classList.add("dice-displace");
-        diceContainer.appendChild(tmpDiceElement);
-        setTimeout(() => {
-            tmpDiceElement.style.top = "0px";
-        }, 200);
-        luckyValue = 6;
-        selectForMovement();
-    }
 }
