@@ -116,9 +116,7 @@ function shiftDice(playerNo) {
             diceContainer.childNodes[0].remove();
             tmpDiceElement.classList.remove("dice-displace");
             diceContainerNext.appendChild(tmpDiceElement);
-
             dicePosition = 1;
-            // document.querySelector(".md4").removeEventListener('click', suffleDice);
             document.querySelector(`.md${playerNo}`).addEventListener('click', suffleDice);
 
         }, 1000);
@@ -130,7 +128,6 @@ function shiftDice(playerNo) {
             diceContainerNext.appendChild(tmpDiceElement);
 
             dicePosition++;
-            // document.querySelector(`.md${playerNo - 1}`).removeEventListener('click', suffleDice);
             document.querySelector(`.md${playerNo}`).addEventListener('click', suffleDice);
 
         }, 1000);
